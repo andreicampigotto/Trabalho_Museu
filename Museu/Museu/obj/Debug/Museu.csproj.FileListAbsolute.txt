@@ -1,2 +1,3 @@
 C:\Users\105349\Documents\GitHub\Trabalho_Museu\Museu\Museu\bin\Debug\Museu.exe.config
 C:\Users\105349\Documents\GitHub\Trabalho_Museu\Museu\Museu\obj\Debug\Museu.csprojResolveAssemblyReference.cache
+C:\Users\i3i\Documents\GitHub\Trabalho_Museu\Museu\Museu\bin\Debug\Museu.exe.config
