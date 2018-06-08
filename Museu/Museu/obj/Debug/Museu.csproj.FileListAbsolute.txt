@@ -1,2 +1,6 @@
 C:\Users\105349\Documents\GitHub\Trabalho_Museu\Museu\Museu\bin\Debug\Museu.exe.config
+<<<<<<< HEAD
 C:\Users\105411\Documents\GitHub\Trabalho_Museu\Museu\Museu\bin\Debug\Museu.exe.config
+=======
+C:\Users\105349\Documents\GitHub\Trabalho_Museu\Museu\Museu\obj\Debug\Museu.csprojResolveAssemblyReference.cache
+>>>>>>> 6de4992b7e72a359def70711a66972d38c426dc6
