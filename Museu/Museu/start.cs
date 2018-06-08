@@ -7,12 +7,12 @@ namespace Museu
 {
     class start
     {
-        Roupas roupas = new Roupas();
-        Armas armas = new Armas();
+        Fardas roupas = new Fardas();
+        MaterialBelico armas = new MaterialBelico();
         Quadros quadros = new Quadros();
         Veiculos veiculos = new Veiculos();
-        Funcionarios funcionarios = new Funcionarios();
-        Fidelidade fidelidade = new Fidelidade();
+        CadastroDeFuncionario cadastrofuncionarios = new CadastroDeFuncionario();
+        CadastroFidelidade cadastroFidelidade = new CadastroFidelidade();
 
         public start()
         {
@@ -35,7 +35,11 @@ namespace Museu
                      |  5  |          Veiculos             |
                      |-------------------------------------|
                      |  6  |          Quadros              |
-                      ------------------------------------- " );
+                      ------------------------------------- 
+                        
+                      OPÇÃO: " );
+
+
 
 
 
