@@ -38,8 +38,11 @@ namespace Museu
                       ------------------------------------- 
                         
                       OPÇÃO: " );
+        }
+            public void MenuPrincipal()
+            {
 
-
+            }
 
 
 
