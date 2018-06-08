@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CadastroDeFuncionario.cs" />
     <Compile Include="Fardas.cs" />
+    <Compile Include="MaterialBelico.cs" />
     <Compile Include="Quadros.cs" />
     <Compile Include="start.cs" />
     <Compile Include="Program.cs" />
