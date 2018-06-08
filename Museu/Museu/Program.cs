@@ -10,6 +10,7 @@ namespace Museu
     {
         static void Main(string[] args)
         {
+            new start();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Museu
 {
-    class menuPrincipal
+    class start
     {
         Roupas roupas = new Roupas();
         Armas armas = new Armas();
@@ -14,9 +14,13 @@ namespace Museu
         Funcionarios funcionarios = new Funcionarios();
         Fidelidade fidelidade = new Fidelidade();
 
-        public menuPrincipal()
+        public start()
         {
-
+            MenuPrincipal();
+        }
+        public void Menu()
+        {
+            Console.Write(@"");
         }
     }
 }
