@@ -11,9 +11,21 @@ namespace Museu
         String[] nome = new String[30];
         String[] sobrenome = new String[30];
         int idade = 0;
-        String[] funcao = new String[30];
+        String[] funcao = new String[40];
 
-        double salario = 0;
+        double salarioPorHoras = 0;
         int horasSemanais = 0;
+
+        public CadastroDeFuncionario(String nome, String sobrenome, int idade, String funcao, double salarioPorHoras, int horasSemanais)
+        {
+
+        }
+
+        public double calcSalario(){
+
+            return horasSemanais * salarioPorHoras;
+        }
+
+
     }
 }
