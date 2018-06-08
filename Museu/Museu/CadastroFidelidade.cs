@@ -8,5 +8,9 @@ namespace Museu
 {
     class CadastroFidelidade
     {
+        public CadastroFidelidade()
+        {
+            string []
+        }
     }
 }
