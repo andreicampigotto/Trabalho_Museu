@@ -37,7 +37,7 @@ namespace Museu
 
         public void EditarQuadros()
         {
-            ListarQuadros();
+            //ListarQuadros();
 
             
         }
