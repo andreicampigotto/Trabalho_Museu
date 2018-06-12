@@ -43,7 +43,6 @@ namespace Museu
         public void iniciar()
         {
             int op = 0;
-
             do
             {
                 try
@@ -89,7 +88,7 @@ namespace Museu
             Console.WriteLine("4- Remover funcionário");
             Console.WriteLine("0- Sair");
             Console.Write("\nOpção: ");
-            return Int32.Parse(Console.ReadLine());
+            return Convert.ToInt32(Console.ReadLine());
         }
 
         public void cadastrar()
@@ -117,7 +116,7 @@ namespace Museu
                     sobrenome[n] = Console.ReadLine();
 
                     Console.Write("\nIdade: ");
-                    idade[n] = Int32.Parse(Console.ReadLine());
+                    idade[n] = Convert.ToInt32(Console.ReadLine());
 
                     Console.Write("\nFunção: ");
                     funcao[n] = Console.ReadLine();
@@ -126,13 +125,13 @@ namespace Museu
                     turno[n] = Console.ReadLine();
 
                     Console.Write("\nSalario(hora): R$");
-                    salarioByHrs[n] = Double.Parse(Console.ReadLine());
+                    salarioByHrs[n] = Convert.ToDouble(Console.ReadLine());
 
                     Console.Write("\nHoras trabalhadas(semana): ");
-                    hrsBySemana[n] = Double.Parse(Console.ReadLine());
+                    hrsBySemana[n] = Convert.ToDouble(Console.ReadLine());
 
                     Console.Write("\nDescontos: R$");
-                    descontos[n] = Double.Parse(Console.ReadLine());
+                    descontos[n] = Convert.ToDouble(Console.ReadLine());
 
                     salario[n] = calcSalario(salarioByHrs[n], hrsBySemana[n], descontos[n]);
                     //Ou imprimirSetores("MateriaisBelicos, Fardas, Veiculos") e armazenar opção
@@ -212,7 +211,7 @@ namespace Museu
             Console.Write("\n3- Buscar por Setor");
             Console.Write("\n0- Cancelar");
             Console.Write("\nOpção: ");
-            op = Int32.Parse(Console.ReadLine());
+            op = Convert.ToInt32(Console.ReadLine());
 
             if (op != 1 && op != 2 && op != 3) Console.WriteLine("\nSaindo...");
             else buscado = buscarBy(op);
@@ -250,7 +249,7 @@ namespace Museu
                 }
             }
             Console.Write("\nInforme o código do Funcionário: ");
-            codF = Int32.Parse(Console.ReadLine());
+            codF = Convert.ToInt32(Console.ReadLine());
 
             for (int i = 0; i < cont; i++)
             {

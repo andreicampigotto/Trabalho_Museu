@@ -49,7 +49,7 @@ namespace Museu
                 try
                 {
                     Console.Clear();
-                    op = menu();
+                    op = Menu();
                     switch (op)
                     {
                         case 0:
@@ -79,7 +79,7 @@ namespace Museu
                 Console.ReadKey();
             } while (op != 0);
         }
-        public int menu()
+        public int Menu()
         {
             Console.WriteLine(
                             @"\nQUADROS:
@@ -94,6 +94,6 @@ namespace Museu
                             |------------------------------|
                             |  0  |         SAIR           |
                               -----------------------------");//retorna opçã
-
+        }
     }
 }

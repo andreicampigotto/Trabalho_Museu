@@ -32,7 +32,6 @@ namespace Museu
         public void iniciar()
         {
             int op = 0;
-
             do
             {
                 try
@@ -69,14 +68,14 @@ namespace Museu
 
         public int menu()
         {
-            Console.WriteLine("\n---- Materiais Béçicos ---");
+            Console.WriteLine("\n---- Materiais Bélicos ---");
             Console.WriteLine("1- Novo Material Bélico");
             Console.WriteLine("2- Listar Materiais Bélicos");
             Console.WriteLine("3- Alterar Material Bélico");
             Console.WriteLine("4- Remover Material Bélico");
             Console.WriteLine("0- Sair");
             Console.Write("\nOpção: ");
-            return Int32.Parse(Console.ReadLine());//retorna opção
+            return Convert.ToInt32(Console.ReadLine());//retorna opção
         }
 
         public void cadastrar()
@@ -98,22 +97,12 @@ namespace Museu
                 do
                 {
                     Console.WriteLine("\n- Código: " + cod[n]);
-                    Console.Write("\nNome: ");
-                    nome[n] = Console.ReadLine();
 
-                    Console.Write("\nDescrição: ");
-                    descricao[n] = Console.ReadLine();
+                    solicitarNome(n);
+                    solicitarDescricao(n);
+                    solicitarCategoria(n);
+                    solicitarQuantidade(n);
 
-                    Console.Write("\nCategoria: ");
-                    categoria[n] = Console.ReadLine();
-
-                    Console.Write("\nQuantidade: ");
-                    quantidade[n] = Int32.Parse(Console.ReadLine());
-
-                    if (nome[n] == "")//validação simples
-                    {
-                        Console.WriteLine("\nInforme os dados necessários!");
-                    }
                 } while (nome[n] == "");
 
                 Console.WriteLine("\nSalvo!");
@@ -121,6 +110,60 @@ namespace Museu
             else
             {
                 Console.WriteLine("\nNão foi possivel inserir!");
+            }
+        }
+
+        private void solicitarQuantidade(int n)
+        {
+            try
+            {
+                Console.WriteLine("Quantidade: ");
+                quantidade[n] = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Infome uma Quantidade válida");
+                solicitarQuantidade(n);
+            }
+        }
+
+        private void solicitarCategoria(int n)
+        {
+            try
+            {
+                Console.WriteLine("Categoria: ");
+                categoria[n] = Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Infome uma Categoria válida");
+                solicitarCategoria(n);
+            }
+        }
+
+        private void solicitarDescricao(int n)
+        {
+            try
+            {
+                Console.WriteLine("Descrição: ");
+                descricao[n] = Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Infome uma Descrição válida");
+                solicitarDescricao(n);
+            }
+        }
+
+        private void solicitarNome(int n)
+        {
+            try
+            {
+                Console.WriteLine("Nome: ");
+                nome[n] = Console.ReadLine();
+            }catch(Exception e){
+                Console.WriteLine("Infome um Nome Válido");
+                solicitarNome(n);
             }
         }
 
@@ -200,7 +243,7 @@ namespace Museu
                 }
             }
             Console.Write("\nInforme o código do Material Bélico: ");
-            codMB = Int32.Parse(Console.ReadLine());
+            codMB = Convert.ToInt32(Console.ReadLine());
             for (int i = 0; i < cont; i++)
             {
                 if (cod[i] == codMB)
