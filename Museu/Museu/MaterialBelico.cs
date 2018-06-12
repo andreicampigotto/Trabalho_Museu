@@ -68,7 +68,7 @@ namespace Museu
 
         public int menu()
         {
-            Console.WriteLine("\n---- Materiais Béçicos ---");
+            Console.WriteLine("\n---- Materiais Bélicos ---");
             Console.WriteLine("1- Novo Material Bélico");
             Console.WriteLine("2- Listar Materiais Bélicos");
             Console.WriteLine("3- Alterar Material Bélico");
