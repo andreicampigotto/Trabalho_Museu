@@ -18,10 +18,10 @@ namespace Museu
         {
             MenuPrincipal();
         }
-        public void Menu()
+
+        public int Menu()
         {
             Console.Write(
-
 
                     @" ------------------------------------ 
                      |  1  |       Funcionários            |
@@ -35,17 +35,48 @@ namespace Museu
                      |  5  |          Veiculos             |
                      |-------------------------------------|
                      |  6  |          Quadros              |
+                     | ------------------------------------|
+                     |  0  |          Sair                 |
                       ------------------------------------- 
                         
-                      OPÇÃO: " );
+                      OPÇÃO: ");
+            return Int32.Parse(Console.ReadLine());
         }
-            public void MenuPrincipal()
-            {
 
-            }
-
-
-
+        public void MenuPrincipal()
+        {
+            int op = 0;
+            do{
+                op = Menu();  
+             
+                switch (op)
+                {
+                    case 0:
+                        Console.WriteLine("Saindo...");
+                        break;
+                    case 1:
+                        cadastrofuncionarios.iniciar();
+                        break;
+                    case 2:
+                        //cadastroFidelidade.iniciar();
+                        break;
+                    case 3:
+                        //roupas.iniciar();
+                        break;
+                    case 4:
+                        //armas.iniciar();
+                        break;
+                    case 5:
+                        //veiculos.iniciar();
+                        break;
+                    case 6:
+                        //quadros.iniciar();
+                        break;
+                    default:
+                        Console.WriteLine("Opção Inválida");
+                        break;
+                }       
+            }while(op != 0);
         }
     }
 
