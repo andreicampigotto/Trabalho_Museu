@@ -46,9 +46,10 @@ namespace Museu
         public void MenuPrincipal()
         {
             int op = 0;
-            do{
-                op = Menu();  
-             
+            do
+            {
+                op = Menu();
+
                 switch (op)
                 {
                     case 0:
@@ -75,8 +76,9 @@ namespace Museu
                     default:
                         Console.WriteLine("Opção Inválida");
                         break;
-                }       
-            }while(op != 0);
+                }
+            } while (op != 0);
         }
     }
+}
 
