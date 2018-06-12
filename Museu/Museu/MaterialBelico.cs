@@ -9,6 +9,7 @@ namespace Museu
     class MaterialBelico
     {
         //Armas, munições, granadas, facas, baionetas
+        //variaveis tipo private = são utilizadas apenas aqui
         private int[] cod;
         private String[] nome;
         private String[] categoria;
@@ -17,7 +18,7 @@ namespace Museu
 
         int cont;
 
-        public MaterialBelico()
+        public MaterialBelico()//Método construtor inicializando variáveis
         {
             cont = 0;
             cod = new int[100];
@@ -27,13 +28,14 @@ namespace Museu
             quantidade = new int[100];
         }
 
+        //método que inicializa o menu() de opçoes para o gerenciamento de materiais belicos
         public void iniciar()
         {
             int op = 0;
 
             do
             {
-                op = menu();
+                op = menu();//munu de opções
                 switch (op)
                 {
                     case 0:
@@ -67,7 +69,7 @@ namespace Museu
             Console.WriteLine("4- Remover Material Bélico");
             Console.WriteLine("0- Sair");
             Console.Write("\nOpção: ");
-            return Int32.Parse(Console.ReadLine());
+            return Int32.Parse(Console.ReadLine());//retorna opção
         }
 
         public void cadastrar()
@@ -77,7 +79,7 @@ namespace Museu
             if (cont == 0) cod[cont] = cont + 1;
             else cod[cont] = cod[cont - 1] + 1;
 
-            inserirDados(cont);
+            inserirDados(cont);//insere dados conforme indice cont
 
             cont++;
         }
@@ -99,7 +101,7 @@ namespace Museu
                 Console.Write("\nQuantidade: ");
                 quantidade[n] = Int32.Parse(Console.ReadLine());
 
-                if (nome[n] == "")
+                if (nome[n] == "")//validação simples
                 {
                     Console.WriteLine("\nInforme os dados necessários!");
                 }
@@ -111,7 +113,7 @@ namespace Museu
         public void listar()
         {
             Console.WriteLine("\n--- Lista de Materias Bélicos ---");
-            Console.WriteLine("\nTotal de Materiais Bélicos: " + totalDeMateriaisBelicos());
+            Console.WriteLine("\nTotal de Materiais Bélicos: " + totalDeMateriaisBelicos());//Soma quantidade de materiais belicos
             for (int n = 0; n < cont; n++)
             {
                 imprimirMaterialBelico(n);
@@ -131,7 +133,7 @@ namespace Museu
         public void alterar()
         {
             Console.WriteLine("\n--- Alterar dados do Material Bélico ---");
-            inserirDados(buscarMaterialBelico());//retorna índice do func. buscado
+            inserirDados(buscarMaterialBelico());//retorna índice do material belico. buscado
         }
 
         public int buscarMaterialBelico()
@@ -149,13 +151,14 @@ namespace Museu
                 op = Int32.Parse(Console.ReadLine());
 
                 if (op != 1 && op != 2 && op != 3) Console.WriteLine("\nSaindo...");
-                else buscado = buscarBy(op);
+                else buscado = buscarBy(op);//busca por opção
 
             } while (buscado == -1);
 
             return buscado;
         }
 
+        //Busca por opção e retorna indice do materiai belico buscado
         public int buscarBy(int op)
         {
             int indice = -1, codMB = 0;
@@ -216,6 +219,7 @@ namespace Museu
 
         public void remover()
         {
+            //O índice removido da espaço ao seu sucessor, e assim sucessivamente. Ao final, decrementa contador de cadastros.
             int buscado = buscarMaterialBelico();
             for (int i = buscado; i < cont; i++)
             {

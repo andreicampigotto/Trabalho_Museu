@@ -36,6 +36,8 @@ namespace Museu
             hrsBySemana = new double[100];
             salario = new double[100];
             descontos = new double[100];
+
+            cadastrar();
         }
 
         public void iniciar()
