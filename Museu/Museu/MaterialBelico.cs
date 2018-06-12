@@ -35,28 +35,35 @@ namespace Museu
 
             do
             {
-                op = menu();//munu de opções
-                switch (op)
+                try
                 {
-                    case 0:
-                        Console.WriteLine("\nSaindo...");
-                        break;
-                    case 1:
-                        cadastrar();
-                        break;
-                    case 2:
-                        listar();
-                        break;
-                    case 3:
-                        alterar();
-                        break;
-                    case 4:
-                        remover();
-                        break;
-                    default:
-                        Console.WriteLine("Opção Inválida");
-                        break;
+                    Console.Clear();
+                    op = menu();//munu de opções
+                    switch (op)
+                    {
+                        case 0:
+                            Console.WriteLine("\nSaindo...");
+                            break;
+                        case 1:
+                            cadastrar();
+                            break;
+                        case 2:
+                            listar();
+                            break;
+                        case 3:
+                            alterar();
+                            break;
+                        case 4:
+                            remover();
+                            break;
+                        default:
+                            Console.WriteLine("Opção Inválida");
+                            break;
+                    }
+                }catch(Exception e){
+                    Console.WriteLine("Erro.: "+e.ToString());
                 }
+                Console.ReadKey();
             } while (op != 0);
         }
 
@@ -86,33 +93,41 @@ namespace Museu
 
         public void inserirDados(int n)
         {
-            do
+            if (n >= 0)
             {
-                Console.WriteLine("\n- Código: " + cod[n]);
-                Console.Write("\nNome: ");
-                nome[n] = Console.ReadLine();
-
-                Console.Write("\nDescrição: ");
-                descricao[n] = Console.ReadLine();
-
-                Console.Write("\nCategoria: ");
-                categoria[n] = Console.ReadLine();
-
-                Console.Write("\nQuantidade: ");
-                quantidade[n] = Int32.Parse(Console.ReadLine());
-
-                if (nome[n] == "")//validação simples
+                do
                 {
-                    Console.WriteLine("\nInforme os dados necessários!");
-                }
-            } while (nome[n] == "");
+                    Console.WriteLine("\n- Código: " + cod[n]);
+                    Console.Write("\nNome: ");
+                    nome[n] = Console.ReadLine();
 
-            Console.WriteLine("\nSalvo!");
+                    Console.Write("\nDescrição: ");
+                    descricao[n] = Console.ReadLine();
+
+                    Console.Write("\nCategoria: ");
+                    categoria[n] = Console.ReadLine();
+
+                    Console.Write("\nQuantidade: ");
+                    quantidade[n] = Int32.Parse(Console.ReadLine());
+
+                    if (nome[n] == "")//validação simples
+                    {
+                        Console.WriteLine("\nInforme os dados necessários!");
+                    }
+                } while (nome[n] == "");
+
+                Console.WriteLine("\nSalvo!");
+            }
+            else
+            {
+                Console.WriteLine("\nNão foi possivel inserir!");
+            }
         }
 
         public void listar()
         {
             Console.WriteLine("\n--- Lista de Materias Bélicos ---");
+
             Console.WriteLine("\nTotal de Materiais Bélicos: " + totalDeMateriaisBelicos());//Soma quantidade de materiais belicos
             for (int n = 0; n < cont; n++)
             {
@@ -140,20 +155,16 @@ namespace Museu
         {
             int op = 0, buscado = -1;
 
-            do
-            {
-                Console.Write("\n--- Buscar Material Belico ---\n");
-                Console.Write("\n1- Buscar por Códiogo");
-                Console.Write("\n2- Buscar por Nome");
-                Console.Write("\n2- Buscar por Categoria");
-                Console.Write("\n0- Cancelar");
-                Console.Write("\nOpção: ");
-                op = Int32.Parse(Console.ReadLine());
+            Console.Write("\n--- Buscar Material Belico ---\n");
+            Console.Write("\n1- Buscar por Códiogo");
+            Console.Write("\n2- Buscar por Nome");
+            Console.Write("\n2- Buscar por Categoria");
+            Console.Write("\n0- Cancelar");
+            Console.Write("\nOpção: ");
+            op = Int32.Parse(Console.ReadLine());
 
-                if (op != 1 && op != 2 && op != 3) Console.WriteLine("\nSaindo...");
-                else buscado = buscarBy(op);//busca por opção
-
-            } while (buscado == -1);
+            if (op != 1 && op != 2 && op != 3) Console.WriteLine("\nSaindo...");
+            else buscado = buscarBy(op);//busca por opção
 
             return buscado;
         }
@@ -163,43 +174,40 @@ namespace Museu
         {
             int indice = -1, codMB = 0;
             String nomeMB, categoriaMB;
-            do
+
+            if (op == 2)
             {
-                if (op == 2)
-                {
-                    Console.Write("\nInforme o Nome do Material Bélico: ");
-                    nomeMB = Console.ReadLine();
-                    for (int i = 0; i < cont; i++)
-                    {
-                        if (nomeMB.Equals(nome[i]))
-                        {
-                            imprimirMaterialBelico(i);
-                        }
-                    }
-                }
-                else if (op == 3)
-                {
-                    Console.Write("\nInforme a Categoria do Material Bélico: ");
-                    categoriaMB = Console.ReadLine();
-                    for (int i = 0; i < cont; i++)
-                    {
-                        if (categoriaMB.Equals(categoria[i]))
-                        {
-                            imprimirMaterialBelico(i);
-                        }
-                    }
-                }
-                Console.Write("\nInforme o código do Material Bélico: ");
-                codMB = Int32.Parse(Console.ReadLine());
+                Console.Write("\nInforme o Nome do Material Bélico: ");
+                nomeMB = Console.ReadLine();
                 for (int i = 0; i < cont; i++)
                 {
-                    if (cod[i] == codMB)
+                    if (nomeMB.Equals(nome[i]))
                     {
-                        indice = i;
+                        imprimirMaterialBelico(i);
                     }
                 }
-
-            } while (indice == -1);
+            }
+            else if (op == 3)
+            {
+                Console.Write("\nInforme a Categoria do Material Bélico: ");
+                categoriaMB = Console.ReadLine();
+                for (int i = 0; i < cont; i++)
+                {
+                    if (categoriaMB.Equals(categoria[i]))
+                    {
+                        imprimirMaterialBelico(i);
+                    }
+                }
+            }
+            Console.Write("\nInforme o código do Material Bélico: ");
+            codMB = Int32.Parse(Console.ReadLine());
+            for (int i = 0; i < cont; i++)
+            {
+                if (cod[i] == codMB)
+                {
+                    indice = i;
+                }
+            }
 
             return indice;
         }
@@ -221,16 +229,23 @@ namespace Museu
         {
             //O índice removido da espaço ao seu sucessor, e assim sucessivamente. Ao final, decrementa contador de cadastros.
             int buscado = buscarMaterialBelico();
-            for (int i = buscado; i < cont; i++)
+            if (buscado >= 0)
             {
-                cod[i] = cod[i + 1];
-                nome[i] = nome[i + 1];
-                descricao[i] = descricao[i + 1];
-                categoria[i] = categoria[i + 1];
-                quantidade[i] = quantidade[i + 1];
+                for (int i = buscado; i < cont; i++)
+                {
+                    cod[i] = cod[i + 1];
+                    nome[i] = nome[i + 1];
+                    descricao[i] = descricao[i + 1];
+                    categoria[i] = categoria[i + 1];
+                    quantidade[i] = quantidade[i + 1];
+                }
+                Console.WriteLine("\nRemovido!");
+                cont--;
             }
-            Console.WriteLine("\nRemovido!");
-            cont--;
+            else
+            {
+                Console.WriteLine("\nNão foi possível excluir!");
+            }
         }
     }
 }
