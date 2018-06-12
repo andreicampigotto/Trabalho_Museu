@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Museu
 {
-    class CadastroDeFuncionarios
+    class CadastroDeFuncionario
     {
         private int[] cod;
         private String[] nome;
@@ -22,7 +22,7 @@ namespace Museu
 
         int cont;        
 
-        public CadastroDeFuncionarios()
+        public CadastroDeFuncionario()
         {
             cont = 0;
             cod = new int[100];
