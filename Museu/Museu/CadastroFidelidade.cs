@@ -10,7 +10,9 @@ namespace Museu
     {
         public CadastroFidelidade()
         {
-            string []
+            int numeroDeCadastro = 0;
+
+
         }
     }
 }
