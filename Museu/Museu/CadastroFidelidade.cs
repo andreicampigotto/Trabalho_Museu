@@ -39,6 +39,7 @@ namespace Museu
             totalGastosEmIngressos = new double[100];
             numeroTelefone = new int[100];
             sexo = new char[100];
+            cpf = new int[100];
 
             cadastrar();
         }
