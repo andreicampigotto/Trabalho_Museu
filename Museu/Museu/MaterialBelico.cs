@@ -8,5 +8,225 @@ namespace Museu
 {
     class MaterialBelico
     {
+        //Armas, munições, granadas, facas, baionetas
+        private int[] cod;
+        private String[] nome;
+        private String[] categoria;
+        private String[] descricao;
+        private int[] quantidade;
+
+        int cont;
+
+        public MaterialBelico()
+        {
+            cont = 0;
+            cod = new int[100];
+            nome = new String[100];
+            descricao = new String[100];
+            categoria = new String[100];
+            quantidade = new int[100];
+        }
+
+        public void iniciar()
+        {
+            int op = 0;
+
+            do
+            {
+                op = menu();
+                switch (op)
+                {
+                    case 0:
+                        Console.WriteLine("\nSaindo...");
+                        break;
+                    case 1:
+                        cadastrar();
+                        break;
+                    case 2:
+                        listar();
+                        break;
+                    case 3:
+                        alterar();
+                        break;
+                    case 4:
+                        remover();
+                        break;
+                    default:
+                        Console.WriteLine("Opção Inválida");
+                        break;
+                }
+            } while (op != 0);
+        }
+
+        public int menu()
+        {
+            Console.WriteLine("\n---- Materiais Béçicos ---");
+            Console.WriteLine("1- Novo Material Bélico");
+            Console.WriteLine("2- Listar Materiais Bélicos");
+            Console.WriteLine("3- Alterar Material Bélico");
+            Console.WriteLine("4- Remover Material Bélico");
+            Console.WriteLine("0- Sair");
+            Console.Write("\nOpção: ");
+            return Int32.Parse(Console.ReadLine());
+        }
+
+        public void cadastrar()
+        {
+            Console.Write("\n--- Cadastro de Material Bélico ---");
+            //Tipo um IDENTITY
+            if (cont == 0) cod[cont] = cont + 1;
+            else cod[cont] = cod[cont - 1] + 1;
+
+            inserirDados(cont);
+
+            cont++;
+        }
+
+        public void inserirDados(int n)
+        {
+            do
+            {
+                Console.WriteLine("\n- Código: " + cod[n]);
+                Console.Write("\nNome: ");
+                nome[n] = Console.ReadLine();
+
+                Console.Write("\nDescrição: ");
+                descricao[n] = Console.ReadLine();
+
+                Console.Write("\nCategoria: ");
+                categoria[n] = Console.ReadLine();
+
+                Console.Write("\nQuantidade: ");
+                quantidade[n] = Int32.Parse(Console.ReadLine());
+
+                if (nome[n] == "")
+                {
+                    Console.WriteLine("\nInforme os dados necessários!");
+                }
+            } while (nome[n] == "");
+
+            Console.WriteLine("\nSalvo!");
+        }
+
+        public void listar()
+        {
+            Console.WriteLine("\n--- Lista de Materias Bélicos ---");
+            Console.WriteLine("\nTotal de Materiais Bélicos: " + totalDeMateriaisBelicos());
+            for (int n = 0; n < cont; n++)
+            {
+                imprimirMaterialBelico(n);
+            }
+        }
+
+        public void imprimirMaterialBelico(int i)
+        {
+            Console.WriteLine("- Código: " + cod[i]);
+            Console.WriteLine("Nome: " + nome[i]);
+            Console.WriteLine("Descrição: " + descricao[i]);
+            Console.WriteLine("Categoria: " + categoria[i]);
+            Console.WriteLine("Quantidade: " + quantidade[i]);
+            Console.WriteLine("\n--\n");
+        }
+
+        public void alterar()
+        {
+            Console.WriteLine("\n--- Alterar dados do Material Bélico ---");
+            inserirDados(buscarMaterialBelico());//retorna índice do func. buscado
+        }
+
+        public int buscarMaterialBelico()
+        {
+            int op = 0, buscado = -1;
+
+            do
+            {
+                Console.Write("\n--- Buscar Material Belico ---\n");
+                Console.Write("\n1- Buscar por Códiogo");
+                Console.Write("\n2- Buscar por Nome");
+                Console.Write("\n2- Buscar por Categoria");
+                Console.Write("\n0- Cancelar");
+                Console.Write("\nOpção: ");
+                op = Int32.Parse(Console.ReadLine());
+
+                if (op != 1 && op != 2 && op != 3) Console.WriteLine("\nSaindo...");
+                else buscado = buscarBy(op);
+
+            } while (buscado == -1);
+
+            return buscado;
+        }
+
+        public int buscarBy(int op)
+        {
+            int indice = -1, codMB = 0;
+            String nomeMB, categoriaMB;
+            do
+            {
+                if (op == 2)
+                {
+                    Console.Write("\nInforme o Nome do Material Bélico: ");
+                    nomeMB = Console.ReadLine();
+                    for (int i = 0; i < cont; i++)
+                    {
+                        if (nomeMB.Equals(nome[i]))
+                        {
+                            imprimirMaterialBelico(i);
+                        }
+                    }
+                }
+                else if (op == 3)
+                {
+                    Console.Write("\nInforme a Categoria do Material Bélico: ");
+                    categoriaMB = Console.ReadLine();
+                    for (int i = 0; i < cont; i++)
+                    {
+                        if (categoriaMB.Equals(categoria[i]))
+                        {
+                            imprimirMaterialBelico(i);
+                        }
+                    }
+                }
+                Console.Write("\nInforme o código do Material Bélico: ");
+                codMB = Int32.Parse(Console.ReadLine());
+                for (int i = 0; i < cont; i++)
+                {
+                    if (cod[i] == codMB)
+                    {
+                        indice = i;
+                    }
+                }
+
+            } while (indice == -1);
+
+            return indice;
+        }
+
+        public int totalDeMateriaisBelicos()
+        {
+            int total = 0;
+            if (cont > 0)
+            {
+                for (int i = 0; i < cont; i++)
+                {
+                    total += quantidade[i];
+                }
+            }
+            return total;
+        }
+
+        public void remover()
+        {
+            int buscado = buscarMaterialBelico();
+            for (int i = buscado; i < cont; i++)
+            {
+                cod[i] = cod[i + 1];
+                nome[i] = nome[i + 1];
+                descricao[i] = descricao[i + 1];
+                categoria[i] = categoria[i + 1];
+                quantidade[i] = quantidade[i + 1];
+            }
+            Console.WriteLine("\nRemovido!");
+            cont--;
+        }
     }
 }
