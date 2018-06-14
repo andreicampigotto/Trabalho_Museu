@@ -41,7 +41,7 @@ namespace Museu
             valorDoQuadro[qtda] = 0000;
             cod[qtda]++;
             qtda++;
-        } // vetor alimentado
+        } // vetor pré alimentado
 
         public void iniciar()
         {
