@@ -88,7 +88,24 @@ namespace Museu
             Console.WriteLine("4- Remover funcionário");
             Console.WriteLine("0- Sair");
             Console.Write("\nOpção: ");
-            return Convert.ToInt32(Console.ReadLine());
+
+            return solicitarOpcao();
+        }
+
+        //Operações
+        private int solicitarOpcao()
+        {
+            int op = 0;
+            try
+            {
+                op = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("\nOpção inválida!");
+                solicitarOpcao();
+            }
+            return op;
         }
 
         public void cadastrar()
@@ -106,43 +123,19 @@ namespace Museu
         {
             if (n >= 0)
             {
-                do
-                {
-                    Console.WriteLine("\n- Código: " + cod[n]);
-                    Console.Write("\nNome: ");
-                    nome[n] = Console.ReadLine();
+                Console.WriteLine("\n- Código: " + cod[n]);
 
-                    Console.Write("\nSobrenome: ");
-                    sobrenome[n] = Console.ReadLine();
+                solicitarNome(n);
+                solicitarSobrenome(n);
+                solicitarIdade(n);
+                solicitarFuncao(n);
+                solicitarTurno(n);
+                solicitarSalarioByHrs(n);
+                solicitarHorasBySemana(n);
+                solicitarDescontos(n);
+                solicitarSetor(n);
 
-                    Console.Write("\nIdade: ");
-                    idade[n] = Convert.ToInt32(Console.ReadLine());
-
-                    Console.Write("\nFunção: ");
-                    funcao[n] = Console.ReadLine();
-
-                    Console.Write("\nTurno: ");
-                    turno[n] = Console.ReadLine();
-
-                    Console.Write("\nSalario(hora): R$");
-                    salarioByHrs[n] = Convert.ToDouble(Console.ReadLine());
-
-                    Console.Write("\nHoras trabalhadas(semana): ");
-                    hrsBySemana[n] = Convert.ToDouble(Console.ReadLine());
-
-                    Console.Write("\nDescontos: R$");
-                    descontos[n] = Convert.ToDouble(Console.ReadLine());
-
-                    salario[n] = calcSalario(salarioByHrs[n], hrsBySemana[n], descontos[n]);
-                    //Ou imprimirSetores("MateriaisBelicos, Fardas, Veiculos") e armazenar opção
-                    Console.Write("\nSetor: ");
-                    setor[n] = Console.ReadLine();
-
-                    if (nome[n] == "")
-                    {
-                        Console.WriteLine("\nInforme os dados necessários!");
-                    }
-                } while (nome[n] == "");
+                salario[n] = calcSalario(salarioByHrs[n], hrsBySemana[n], descontos[n]);
 
                 Console.WriteLine("\nSalvo!");
             }
@@ -164,6 +157,41 @@ namespace Museu
             Console.WriteLine("Maior Salario: R$" + maiorSalario());
         }
 
+        public void alterar()
+        {
+            Console.WriteLine("\n--- Alterar dados do Funcionários ---");
+            inserirDados(buscarFuncionario());
+        }
+
+        public void remover()
+        {
+            int buscado = buscarFuncionario();
+            if (buscado >= 0)
+            {
+                for (int i = buscado; i < cont; i++)
+                {
+                    cod[i] = cod[i + 1];
+                    nome[i] = nome[i + 1];
+                    sobrenome[i] = sobrenome[i + 1];
+                    idade[i] = idade[i + 1];
+                    funcao[i] = funcao[i + 1];
+                    turno[i] = turno[i + 1];
+                    setor[i] = setor[i + 1];
+                    salarioByHrs[i] = salarioByHrs[i + 1];
+                    hrsBySemana[i] = hrsBySemana[i + 1];
+                    salario[i] = salario[i + 1];
+                    descontos[i] = descontos[i + 1];
+                }
+                Console.WriteLine("\nRemovido!");
+                cont--;
+            }
+            else
+            {
+                Console.WriteLine("\nNão foi possível excluir!");
+            }
+        }
+
+        //Buscas e Impressões
         public void imprimirFuncionario(int i)
         {
             Console.WriteLine("- Código: " + cod[i]);
@@ -178,27 +206,6 @@ namespace Museu
             Console.WriteLine("Descontos: R$" + descontos[i]);
             Console.WriteLine("Salário Liquido: R$" + salario[i]);
             Console.WriteLine("\n--\n");
-        }
-
-        public double maiorSalario()
-        {
-            double maiorSalario = salario[0];
-
-            for (int n = 0; n < cont; n++)
-            {
-                if (maiorSalario < salario[n])
-                {
-                    maiorSalario = salario[n];
-                }
-            }
-
-            return maiorSalario;
-        }
-
-        public void alterar()
-        {
-            Console.WriteLine("\n--- Alterar dados do Funcionários ---");
-            inserirDados(buscarFuncionario());
         }
 
         public int buscarFuncionario()
@@ -262,9 +269,19 @@ namespace Museu
             return indice;
         }
 
+
+        //Cálculos
         public double calcSalario(double salarioByHoras, double hrsBySemana, double descontos)
         {
-            return (salarioByHoras * (hrsBySemana * 5)) - descontos;
+            try
+            {
+                return salarioByHoras * (hrsBySemana * 5) - descontos;
+            }
+            catch(Exception)
+            {
+                Console.WriteLine("\nDados de Salario inválidos");
+            }
+            return -1;
         }
 
         public double imprimirFolhaDePagamento()
@@ -280,31 +297,135 @@ namespace Museu
             return total;
         }
 
-        public void remover()
+        public double maiorSalario()
         {
-            int buscado = buscarFuncionario();
-            if (buscado >= 0)
+            double maiorSalario = salario[0];
+
+            for (int n = 0; n < cont; n++)
             {
-                for (int i = buscado; i < cont; i++)
+                if (maiorSalario < salario[n])
                 {
-                    cod[i] = cod[i + 1];
-                    nome[i] = nome[i + 1];
-                    sobrenome[i] = sobrenome[i + 1];
-                    idade[i] = idade[i + 1];
-                    funcao[i] = funcao[i + 1];
-                    turno[i] = turno[i + 1];
-                    setor[i] = setor[i + 1];
-                    salarioByHrs[i] = salarioByHrs[i + 1];
-                    hrsBySemana[i] = hrsBySemana[i + 1];
-                    salario[i] = salario[i + 1];
-                    descontos[i] = descontos[i + 1];
+                    maiorSalario = salario[n];
                 }
-                Console.WriteLine("\nRemovido!");
-                cont--;
             }
-            else
+
+            return maiorSalario;
+        }
+
+
+        //Solicitando Dados
+        private void solicitarSetor(int n)
+        {
+            try
             {
-                Console.WriteLine("\nNão foi possível excluir!");
+                Console.Write("\nSetor: ");
+                setor[n] = Console.ReadLine();
+            }
+            catch
+            {
+                Console.WriteLine("Dados inválidos!");
+                solicitarSetor(n);
+            }
+        }
+
+        private void solicitarDescontos(int n)
+        {
+            try
+            {
+                Console.Write("\nDescontos: R$");
+                descontos[n] = Convert.ToDouble(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("\nDados inválidos!");
+                solicitarDescontos(n);
+            }
+        }
+
+        private void solicitarHorasBySemana(int n)
+        {
+            try
+            {
+                Console.Write("\nHoras trabalhadas(semana): ");
+                hrsBySemana[n] = Convert.ToDouble(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("\nDados inválidos!");
+                solicitarHorasBySemana(n);
+            }
+        }
+
+        private void solicitarSalarioByHrs(int n)
+        {
+            try
+            {
+                Console.Write("\nSalario(hora): R$");
+                salarioByHrs[n] = Convert.ToDouble(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("\nDados inválidos!");
+                solicitarSalarioByHrs(n);
+            }
+        }
+
+        private void solicitarTurno(int n)
+        {
+            Console.Write("\nTurno: ");
+            turno[n] = Console.ReadLine();
+
+            if (turno[n].Length < 2 && turno[n] == " ")
+            {
+                solicitarTurno(n);
+            }
+        }
+
+        private void solicitarFuncao(int n)
+        {
+
+            Console.Write("\nFunção: ");
+            funcao[n] = Console.ReadLine();
+
+            if (funcao[n].Length < 2 && funcao[n] == " ")
+            {
+                solicitarFuncao(n);
+            }
+        }
+
+        private void solicitarIdade(int n)
+        {
+            try
+            {
+                Console.Write("\nIdade: ");
+                idade[n] = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("\nDados inválidos!");
+                solicitarIdade(n);
+            }
+        }
+
+        private void solicitarSobrenome(int n)
+        {
+            Console.Write("\nSobrenome: ");
+            sobrenome[n] = Console.ReadLine();
+
+            if (sobrenome[n].Length < 2 && sobrenome[n] == "")
+            {
+                solicitarSobrenome(n);
+            }
+        }
+
+        private void solicitarNome(int n)
+        {
+            Console.Write("\nNome: ");
+            nome[n] = Console.ReadLine();
+
+            if (nome[n].Length < 2 && nome[n] == "")
+            {
+                solicitarNome(n);
             }
         }
     }
