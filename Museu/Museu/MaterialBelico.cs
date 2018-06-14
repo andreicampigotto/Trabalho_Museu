@@ -148,7 +148,7 @@ namespace Museu
                 imprimirMaterialBelico(n);
             }
         }        
-
+        
         public void alterar()
         {
             Console.WriteLine("\n--- Alterar dados do Material Bélico ---");
