@@ -32,49 +32,45 @@ namespace Museu
         public void iniciar()
         {
             int op = 0;
-
             do
             {
-                op = menu();//munu de opções
-                switch (op)
+                try
                 {
-                    case 0:
-                        Console.WriteLine("\nSaindo...");
-                        break;
-                    case 1:
-                        cadastrar();
-                        break;
-                    case 2:
-                        listar();
-                        break;
-                    case 3:
-                        alterar();
-                        break;
-                    case 4:
-                        remover();
-                        break;
-                    default:
-                        Console.WriteLine("Opção Inválida");
-                        break;
+                    Console.Clear();
+                    op = menu();//munu de opções
+                    switch (op)
+                    {
+                        case 0:
+                            Console.WriteLine("\nSaindo...");
+                            break;
+                        case 1:
+                            cadastrar();
+                            break;
+                        case 2:
+                            listar();
+                            break;
+                        case 3:
+                            alterar();
+                            break;
+                        case 4:
+                            remover();
+                            break;
+                        default:
+                            Console.WriteLine("Opção Inválida");
+                            break;
+                    }
+                }catch(Exception e){
+                    Console.WriteLine("Erro.: "+e.ToString());
                 }
+                Console.ReadKey();
             } while (op != 0);
         }
 
         public int menu()
         {
-<<<<<<< HEAD
-            Console.WriteLine("\n---- Veículos ---");
-            Console.WriteLine("1 - Novo veículo");
-            Console.WriteLine("2 - Listar veículos ");
-            Console.WriteLine("3 - Editar veículos");
-            Console.WriteLine("4 - Remover Veículos");
-            Console.WriteLine("0- Sair");
-            Console.Write("\nOpção: ");
-            return Int32.Parse(Console.ReadLine());//retorna opção
-=======
             Console.Write(
-                  @" ---------------------------------------
-                     |  1  |     Cadastrar veículo         |
+                   @"---------------------------------------
+                     |  1  |  Novo cadastro de veículos    |
                      |-------------------------------------|
                      |  2  |      Listar veículos          |
                      |-------------------------------------|
@@ -85,9 +81,14 @@ namespace Museu
                      |  0  |            Sair               |
                      ---------------------------------------      
                       OPÇÃO: ");
+<<<<<<< HEAD
 
             return Convert.ToInt32(Console.ReadLine());
 
+=======
+ 
+            return Convert.ToInt32(Console.ReadLine());//retorna opção
+>>>>>>> b167ff374ac5086bb8fb502a8041f13e301639ff
         }
 
         public void cadastrar()
@@ -104,8 +105,9 @@ namespace Museu
 
         public void inserirDados(int n)
         {
-            do
+            if (n >= 0)
             {
+<<<<<<< HEAD
                 Console.WriteLine("\nNúmero de cadastro: " + cod[n]);
                 Console.Write("\nNome: ");
                 Console.WriteLine("\n- Número de cadastro: " + cod[n]);
@@ -117,22 +119,91 @@ namespace Museu
 
                 Console.Write("\nCategoria do veículo: ");
                 categoria[n] = Console.ReadLine();
-
-                Console.Write("\nQuantidade de veículos: ");
-                quantidade[n] = Int32.Parse(Console.ReadLine());
-
-                if (nome[n] == "")//validação simples
+=======
+                do
                 {
-                    Console.WriteLine("\nInforme os dados necessários!");
-                }
-            } while (nome[n] == "");
+                    Console.WriteLine("\n- Número cadastro: " + cod[n]);
+>>>>>>> b167ff374ac5086bb8fb502a8041f13e301639ff
 
-            Console.WriteLine("\nSalvo!");
+                    solicitarNome(n);
+                    solicitarDescricao(n);
+                    solicitarCategoria(n);
+                    solicitarQuantidade(n);
+
+                }
+                while (nome[n] == "");
+                {
+                    Console.WriteLine("\nSalvo!");
+                }
+            
+
+            }
+            else
+            {
+                Console.WriteLine("\nNão foi possivel inserir!");
+            }
+        }
+
+        private void solicitarQuantidade(int n)
+        {
+            try
+            {
+                Console.WriteLine("Quantidade: ");
+                quantidade[n] = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Infome uma Quantidade válida");
+                solicitarQuantidade(n);
+            }
+        }
+
+        private void solicitarCategoria(int n)
+        {
+            try
+            {
+                Console.WriteLine("Categoria: ");
+                categoria[n] = Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Infome uma Categoria válida");
+                solicitarCategoria(n);
+            }
+        }
+
+        private void solicitarDescricao(int n)
+        {
+            try
+            {
+                Console.WriteLine("Descrição: ");
+                descricao[n] = Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Infome uma Descrição válida");
+                solicitarDescricao(n);
+            }
+        }
+
+        private void solicitarNome(int n)
+        {
+            try
+            {
+                Console.WriteLine("Nome do veículo: ");
+                nome[n] = Console.ReadLine();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Infome um Nome Válido");
+                solicitarNome(n);
+            }
         }
 
         public void listar()
         {
-            Console.WriteLine("\n--- Lista de veículos ---");
+            Console.WriteLine("\n--- Listar veículos ---");
+
             Console.WriteLine("\nTotal de veículos: " + totalDeVeiculos());//Soma quantidade de materiais belicos
             for (int n = 0; n < cont; n++)
             {
@@ -142,11 +213,11 @@ namespace Museu
 
         public void imprimirVeiculos(int i)
         {
-            Console.WriteLine("Número de cadastro: " + cod[i]);
-            Console.WriteLine("Nome veículo: " + nome[i]);
-            Console.WriteLine("Descrição veículo: " + descricao[i]);
-            Console.WriteLine("Categoria do veículo: " + categoria[i]);
-            Console.WriteLine("Quantidade de veículos: " + quantidade[i]);
+            Console.WriteLine("- Número de cadastro: " + cod[i]);
+            Console.WriteLine("Nome do veículo: " + nome[i]);
+            Console.WriteLine("Descrição: " + descricao[i]);
+            Console.WriteLine("Categoria: " + categoria[i]);
+            Console.WriteLine("Quantidade: " + quantidade[i]);
             Console.WriteLine("\n--\n");
         }
 
@@ -160,20 +231,16 @@ namespace Museu
         {
             int op = 0, buscado = -1;
 
-            do
-            {
-                Console.Write("\n--- Buscar Veículos ---\n");
-                Console.Write("\n1- Buscar por Número de cadastro");
-                Console.Write("\n2- Buscar por Nome");
-                Console.Write("\n2- Buscar por Categoria");
-                Console.Write("\n0- Cancelar");
-                Console.Write("\nOpção: ");
-                op = Int32.Parse(Console.ReadLine());
+            Console.Write("\n--- Buscar Material Belico ---\n");
+            Console.Write("\n1- Buscar por Códiogo");
+            Console.Write("\n2- Buscar por Nome");
+            Console.Write("\n2- Buscar por Categoria");
+            Console.Write("\n0- Cancelar");
+            Console.Write("\nOpção: ");
+            op = Int32.Parse(Console.ReadLine());
 
-                if (op != 1 && op != 2 && op != 3) Console.WriteLine("\nSaindo...");
-                else buscado = buscarBy(op);//busca por opção
-
-            } while (buscado == -1);
+            if (op != 1 && op != 2 && op != 3) Console.WriteLine("\nSaindo...");
+            else buscado = buscarBy(op);//busca por opção
 
             return buscado;
         }
@@ -183,43 +250,40 @@ namespace Museu
         {
             int indice = -1, codMB = 0;
             String nomeMB, categoriaMB;
-            do
+
+            if (op == 2)
             {
-                if (op == 2)
-                {
-                    Console.Write("\nInforme o nome do veículo: ");
-                    nomeMB = Console.ReadLine();
-                    for (int i = 0; i < cont; i++)
-                    {
-                        if (nomeMB.Equals(nome[i]))
-                        {
-                            imprimirVeiculos(i);
-                        }
-                    }
-                }
-                else if (op == 3)
-                {
-                    Console.Write("\nInforme a categoria do veículo: ");
-                    categoriaMB = Console.ReadLine();
-                    for (int i = 0; i < cont; i++)
-                    {
-                        if (categoriaMB.Equals(categoria[i]))
-                        {
-                            imprimirVeiculos(i);
-                        }
-                    }
-                }
-                Console.Write("\nInforme o número de cadastro do veículo: ");
-                codMB = Int32.Parse(Console.ReadLine());
+                Console.Write("\nInforme o nome do veículo: ");
+                nomeMB = Console.ReadLine();
                 for (int i = 0; i < cont; i++)
                 {
-                    if (cod[i] == codMB)
+                    if (nomeMB.Equals(nome[i]))
                     {
-                        indice = i;
+                        imprimirVeiculos(i);
                     }
                 }
-
-            } while (indice == -1);
+            }
+            else if (op == 3)
+            {
+                Console.Write("\nInforme a categoria do veículo: ");
+                categoriaMB = Console.ReadLine();
+                for (int i = 0; i < cont; i++)
+                {
+                    if (categoriaMB.Equals(categoria[i]))
+                    {
+                        imprimirVeiculos(i);
+                    }
+                }
+            }
+            Console.Write("\nInforme o número de cadastro do veículo: ");
+            codMB = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < cont; i++)
+            {
+                if (cod[i] == codMB)
+                {
+                    indice = i;
+                }
+            }
 
             return indice;
         }
@@ -241,16 +305,23 @@ namespace Museu
         {
             //O índice removido da espaço ao seu sucessor, e assim sucessivamente. Ao final, decrementa contador de cadastros.
             int buscado = buscarVeiculos();
-            for (int i = buscado; i < cont; i++)
+            if (buscado >= 0)
             {
-                cod[i] = cod[i + 1];
-                nome[i] = nome[i + 1];
-                descricao[i] = descricao[i + 1];
-                categoria[i] = categoria[i + 1];
-                quantidade[i] = quantidade[i + 1];
+                for (int i = buscado; i < cont; i++)
+                {
+                    cod[i] = cod[i + 1];
+                    nome[i] = nome[i + 1];
+                    descricao[i] = descricao[i + 1];
+                    categoria[i] = categoria[i + 1];
+                    quantidade[i] = quantidade[i + 1];
+                }
+                Console.WriteLine("\nRemovido!");
+                cont--;
             }
-            Console.WriteLine("\nRemovido!");
-            cont--;
+            else
+            {
+                Console.WriteLine("\nNão foi possível excluir!");
+            }
         }
     }
 }
