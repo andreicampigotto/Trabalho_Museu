@@ -326,3 +326,4 @@ namespace Museu
         }
     }
 }
+where alunos 'alunos';
