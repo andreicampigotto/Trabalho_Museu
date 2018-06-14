@@ -70,12 +70,19 @@ namespace Museu
 
         public int menu()
         {
-            Console.WriteLine("\n---- Materiais Bélicos ---");
-            Console.WriteLine("1- Novo Material Bélico");
-            Console.WriteLine("2- Listar Materiais Bélicos");
-            Console.WriteLine("3- Alterar Material Bélico");
-            Console.WriteLine("4- Remover Material Bélico");
-            Console.WriteLine("0- Sair");
+            Console.WriteLine(
+                            @"\nQUADROS:
+                              ---------------------------------------
+                            |  1  |      NOVO MATERIAL BELICO         |
+                            |-----------------------------------------|
+                            |  2  |      LISTAR MATERIAIS BELICOS     |
+                            |-----------------------------------------|
+                            |  3  |      ALTER MATERIAIS BELICOS      |
+                            |-----------------------------------------|
+                            |  4  |      REMOVER MATERIAIS BELICOS    |
+                            |-----------------------------------------|
+                            |  0  |               SAIR                |
+                             ---------------------------------------- ");
             Console.Write("\nOpção: ");
 
             return solicitarOpcao();

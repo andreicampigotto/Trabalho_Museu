@@ -116,7 +116,7 @@ namespace Museu
             if (qtda >= 0)
             {
 
-                Console.WriteLine("\n- Código: " + cod[qtda]);
+                Console.WriteLine("\n Código: " + cod[qtda]);
 
                 solicitarNome(qtda);
                 solicitarPintor(qtda);
