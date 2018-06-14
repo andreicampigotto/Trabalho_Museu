@@ -12,68 +12,78 @@ namespace Museu
         private String[] nomeCliente;
         private String[] sobrenomeCliente;
         private int[] idade;
-        private int[] nascimento;
+        private int[] nascimentoDia;
+        private int[] nascimentoMes;
+        private int[] nascimentoAno;
         private String[] profissao;
         private String[] nacionalidade;
         private String[] cidadeResidencia;
         private int[] cpf;
-        private double[] pontuacao;
-        private double[] totalGastosEmIngressos;
+        private int[] numeroDeVisitas;
         private int[] numeroTelefone;
         private char[] sexo;
+        
 
         int contador;
+        private int pontuacao;
 
         public CadastroFidelidade()
         {
             contador = 0;
+           
             numeroCliente = new int[100];
             nomeCliente = new String[100];
             sobrenomeCliente = new String[100];
             idade = new int[100];
-            nascimento = new int[100];
+            nascimentoDia = new int[100];
+            nascimentoMes = new int[100];
+            nascimentoAno = new int[100];
             profissao = new String[100];
             nacionalidade = new String[100];
-            cidadeResidencia = new String[100];
-            pontuacao = new double[100];
-            totalGastosEmIngressos = new double[100];
+            cidadeResidencia = new String[100];          
+            numeroDeVisitas = new int[100];
             numeroTelefone = new int[100];
             sexo = new char[100];
             cpf = new int[100];
-
-            cadastrar();
         }
 
         public void iniciar()
         {
             int op = 0;
-
             do
             {
-                op = menu();
-                switch (op)
+                try
                 {
-                    case 0:
-                        Console.WriteLine("\nSaindo...");
-                        break;
-                    case 1:
-                        cadastrar();
-                        break;
-                    case 2:
-                        listar();
-                        break;
-                    case 3:
-                        alterar();
-                        break;
-                    case 4:
-                        remover();
-                        break;
-                    default:
-                        Console.WriteLine("Opção Inválida");
-                        break;
+                    Console.Clear();
+                    op = menu();
+                    switch (op)
+                    {
+                        case 0:
+                            Console.WriteLine("\nSaindo...");
+                            break;
+                        case 1:
+                            cadastrar();
+                            break;
+                        case 2:
+                            listar();
+                            break;
+                        case 3:
+                            alterar();
+                            break;
+                        case 4:
+                            remover();
+                            break;
+                        default:
+                            Console.WriteLine("Opção Inválida");
+                            break;
+                    }
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error 0x00000000, Something wrong found in your operation: " + e.ToString());
+                }
+                Console.ReadKey();
             } while (op != 0);
-
         }
 
         public int menu()
@@ -92,7 +102,7 @@ namespace Museu
                      ---------------------------------------      
                       OPÇÃO: ");
 
-            return Int32.Parse(Console.ReadLine());
+            return Convert.ToInt32(Console.ReadLine());
         }
 
         public void cadastrar()
@@ -107,209 +117,165 @@ namespace Museu
 
         public void inserirDados(int n)
         {
-            do
+            if (n >= 0)
             {
-                Console.Write("\nCPF: ");
-                cpf[n] = Convert.ToInt32(Console.ReadLine());
-
-                Console.Write("\nNúmero do cliente: ");
-                numeroCliente[n] = Convert.ToInt32(Console.ReadLine());
-
-                SolicitarNome(n);
-                SolicitarSobrenome(n);
-
-
-
-                Console.Write("\nSexo: Digite ( M ) para Masculino ou ( F ) para Feminino ");
-                sexo[n] = Convert.ToChar(Console.ReadLine());
-
-
-                SolicitarIdade(n);
-
-                Console.Write("\nNascimento: ");
-                nascimento[n] = Convert.ToInt32(Console.ReadLine());
-
-                Console.Write("\nProfissão: ");
-                profissao[n] = Console.ReadLine();
-
-                Console.Write("\nNacionalidade: ");
-                nacionalidade[n] = Console.ReadLine();
-
-                Console.Write("\nCidade em que Reside: ");
-                cidadeResidencia[n] = Console.ReadLine();
-
-                Console.Write("\nNúmero para contato: ");
-                numeroTelefone[n] = Convert.ToInt32(Console.ReadLine());
-
-
-            } while (nomeCliente[n] == "");
-
-            Console.WriteLine("\nSalvo!");
-        }
-
-        private void SolicitarIdade(int n)
-        {
-            try
-            {
-                Console.Write("\nIdade: ");
-                idade[n] = Convert.ToInt32(Console.ReadLine());
-                if (idade[n] < 0 || idade[n] > 128)
+                do
                 {
-                    Console.WriteLine("Idade deve estar no intervalo de 0 até 128.");
-                    SolicitarIdade(n);
-                }
+                    Console.Write("\nCPF: ");
+                    cpf[n] = Convert.ToInt32(Console.ReadLine());
+
+                    Console.Write("\nNúmero de cadastro: ");
+                    numeroCliente[n] = Convert.ToInt32(Console.ReadLine());
+
+                    Console.Write("Nome do cliente: ");
+                    nomeCliente[n] = Console.ReadLine());
+
+                    Console.Write("Sobre nome: ");
+                    sobrenomeCliente[n] = Console.ReadLine());
+
+
+                    Console.Write("\nSexo: Digite ( M ) para Masculino ou ( F ) para Feminino ");
+                    sexo[n] = Convert.ToChar(Console.ReadLine());
+
+                    Console.Write("Idade: ");
+                    idade[n] = Convert.ToInt32(Console.ReadLine());
+
+                    Console.Write("\nDia do nascimento: ");
+                    nascimentoDia[n] = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("\nMês do nascimento: ");
+                    nascimentoMes[n] = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("\nAno do nascimento: ");
+                    nascimentoAno[n] = Convert.ToInt32(Console.ReadLine());
+
+                    Console.Write("\nProfissão: ");
+                    profissao[n] = Console.ReadLine();
+
+                    Console.Write("\nNacionalidade: ");
+                    nacionalidade[n] = Console.ReadLine();
+
+                    Console.Write("\nCidade em que Reside: ");
+                    cidadeResidencia[n] = Console.ReadLine();
+
+                    Console.Write("\nNúmero para contato: ");
+                    numeroTelefone[n] = Convert.ToInt32(Console.ReadLine());
+
+                    Console.Write("Número de visitas: ");
+                    numeroDeVisitas[n] = Convert.ToInt32(Console.ReadLine());
+                   
+                    if (nomeCliente[n] == "")
+                    {
+                        Console.WriteLine("\nInforme os dados necessários!");
+                    }
+                } while (nomeCliente[n] == "");
+
+                Console.WriteLine("\nSalvo!");
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine("Idade deve conter somente números");
-                SolicitarIdade(n);
-            }
-
-        }
-
-        private void SolicitarSobrenome(int n)
-        {
-
-            Console.Write("\nSobrenome: ");
-            sobrenomeCliente[n] = Console.ReadLine();
-
-            while (sobrenomeCliente[n].Count() < 3)
-            {
-                // TODO mensagem de erro do sobrenome
-                Console.Write("\nSobrenome: ");
-                sobrenomeCliente[n] = Console.ReadLine();
-            }
-        }
-
-        private void SolicitarNome(int n)
-        {
-            Console.Write("\nNome: ");
-            nomeCliente[n] = Console.ReadLine();
-
-            while (nomeCliente[n] == "" || nomeCliente[n].Count() < 3)
-            {
-                Console.WriteLine("\nInforme os dados necessários!");
-                Console.Write("\nNome: ");
-                nomeCliente[n] = Console.ReadLine();
+                Console.WriteLine("\nNão foi possivel inserir!");
             }
         }
 
         public void listar()
         {
-            Console.WriteLine("\n--- Lista de Funcionários ---");
-            int op = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("\n--- Lista de Clientes ---");
 
-            for (int n = 0; n < cont; n++)
+            for (int n = 0; n < contador; n++)
             {
-                imprimirFuncionario(n);
+                imprimirClientes(n);
             }
-            Console.WriteLine("Folha de Pagamento: R$" + imprimirFolhaDePagamento());
-            Console.WriteLine("Maior Salario: R$" + maiorSalario());
-
+            
         }
 
-        public void imprimirFuncionario(int i)
+        public void imprimirClientes(int i)
         {
-            Console.WriteLine("- Código: " + cod[i]);
-            Console.WriteLine("Nome: " + nome[i] + " " + sobrenome[i]);
+
+            pontuacao = 999999;
+
+            Console.WriteLine("--------------------------------------------------------------------------------");
+            Console.WriteLine("O cliente com maior pontuação é ganhador de 2 ingressos válidos para ano inteiro");
+            Console.WriteLine("--------------------------------------------------------------------------------");
+            Console.WriteLine("CPF: " + cpf[i]);
+            Console.WriteLine("Número de cadastro: " + numeroCliente[i]);
+            Console.WriteLine("Nome do cliente: " + nomeCliente[i] + " " + sobrenomeCliente[i]);
+            Console.WriteLine("Sexo: " + sexo[i]);
             Console.WriteLine("Idade: " + idade[i]);
-            Console.WriteLine("Função: " + funcao[i]);
-            Console.WriteLine("Turno: " + turno[i]);
-            Console.WriteLine("Setor: " + setor[i]);
-            Console.WriteLine("--- Salário ---");
-            Console.WriteLine("Salário por hora: R$" + salarioByHrs[i]);
-            Console.WriteLine("Horas por semana: " + hrsBySemana[i]);
-            Console.WriteLine("Descontos: R$" + descontos[i]);
-            Console.WriteLine("Salário Liquido: R$" + salario[i]);
-            Console.WriteLine("\n--\n");
-        }
+            Console.WriteLine("Nascimento: " + nascimentoDia[i] + " / " + nascimentoMes[i] + " / " + nascimentoAno[i]);
+            Console.WriteLine("Profissão: " + profissao[i]);
+            Console.WriteLine("Nacionalidade: " + nacionalidade[i]);
+            Console.WriteLine("Cidade em que reside: " + cidadeResidencia[i]);
+            Console.WriteLine("Número para contato: " + numeroTelefone[i]);
+            Console.WriteLine("Número de visitas: " + numeroDeVisitas[i]);
+            Console.WriteLine("Pontuação: " + pontuacao);
+            Console.WriteLine("--------------------------------------------------------------------------------");
+            Console.WriteLine("O cliente com maior pontuação é ganhador de 2 ingressos válidos para ano inteiro");
+            Console.WriteLine("--------------------------------------------------------------------------------");
 
-        public double maiorSalario()
-        {
-            double maiorSalario = salario[0];
-
-            for (int n = 0; n < cont; n++)
-            {
-                if (maiorSalario < salario[n])
-                {
-                    maiorSalario = salario[n];
-                }
-            }
-
-            return maiorSalario;
         }
 
         public void alterar()
         {
-            Console.WriteLine("\n--- Alterar dados do Funcionários ---");
-            inserirDados(buscarFuncionario());
+            Console.WriteLine("\n--- Editar dados do cliente ---");
+            inserirDados(buscarCliente());
         }
 
-        public int buscarFuncionario()
+        public int buscarCliente()
         {
             int op = 0, buscado = -1;
 
-            do
+            Console.Write("\n--- Buscar Cliente ---\n");
+            Console.Write("\n1- Buscar por CPF");
+            Console.Write("\n2- Buscar por número de cadastro");
+            Console.Write("\n0- Cancelar");
+            Console.Write("\nOpção: ");
+            op = Convert.ToInt32(Console.ReadLine());
+
+            if (op != 1 && op != 2 && op != 3)
             {
-                Console.Write("\n--- Buscar Funcionário ---\n");
-                Console.Write("\n1- Buscar por Códiogo");
-                Console.Write("\n2- Buscar por Nome");
-                Console.Write("\n3- Buscar por Setor");
-                Console.Write("\n0- Cancelar");
-                Console.Write("\nOpção: ");
-                op = Int32.Parse(Console.ReadLine());
-
-                if (op != 1 && op != 2 && op != 3) Console.WriteLine("\nSaindo...");
-                else buscado = buscarBy(op);
-
-            } while (buscado == -1);
-
+                Console.WriteLine("\nSaindo...");
+            }
+            else
+            {
+                buscado = BuscarBy(op);
+            }
             return buscado;
         }
 
-        public int buscarBy(int op)
+        public int BuscarBy(int op)
         {
-            int indice = -1, codF = 0;
-            String nomeF, setorF;
-            do
+            int indice = -1, numeroClienteF, cpfF;
+           
+         
+
+            if (op == 1)
             {
-                if (op == 2)
+                Console.Write("\nInforme o CPF do cliente: ");
+                cpfF = Convert.ToInt32(Console.ReadLine());
+                for (int i = 0; i < contador; i++)
                 {
-                    Console.Write("\nInforme o Nome do Funcionário: ");
-                    nomeF = Console.ReadLine();
-                    for (int i = 0; i < cont; i++)
-                    {
-                        if (nomeF.Equals(nome[i]))
-                        {
-                            imprimirFuncionario(i);
-                        }
-                    }
-                }
-                else if (op == 3)
-                {
-                    Console.Write("\nInforme o Setor do Funcionário: ");
-                    setorF = Console.ReadLine();
-                    for (int i = 0; i < cont; i++)
-                    {
-                        if (setorF.Equals(setor[i]))
-                        {
-                            imprimirFuncionario(i);
-                        }
-                    }
-                }
-                Console.Write("\nInforme o código do Funcionário: ");
-                codF = Int32.Parse(Console.ReadLine());
-                for (int i = 0; i < cont; i++)
-                {
-                    if (cod[i] == codF)
+                    if (cpf[i] == cpfF)
                     {
                         indice = i;
                     }
                 }
+            }
+            else if (op == 2)
+            {
+                Console.Write("\nInforme o numero de cadastro: ");
+                numeroClienteF = Convert.ToInt32(Console.ReadLine());
+                for (int i = 0; i < contador; i++)
+                {
+                    if (numeroCliente[i] == numeroClienteF)
+                    {
+                        indice = i;
+                    }
+                }
+                return indice;
+            }
 
-            } while (indice == -1);
-
-            return indice;
+            private void imprimircpfF(int i)
+        {
+            throw new NotImplementedException();
         }
 
         public double calcSalario(double salarioByHoras, double hrsBySemana, double descontos)
@@ -333,22 +299,30 @@ namespace Museu
         public void remover()
         {
             int buscado = buscarFuncionario();
-            for (int i = buscado; i < cont; i++)
+            if (buscado >= 0)
             {
-                cod[i] = cod[i + 1];
-                nome[i] = nome[i + 1];
-                sobrenome[i] = sobrenome[i + 1];
-                idade[i] = idade[i + 1];
-                funcao[i] = funcao[i + 1];
-                turno[i] = turno[i + 1];
-                setor[i] = setor[i + 1];
-                salarioByHrs[i] = salarioByHrs[i + 1];
-                hrsBySemana[i] = hrsBySemana[i + 1];
-                salario[i] = salario[i + 1];
-                descontos[i] = descontos[i + 1];
+                for (int i = buscado; i < cont; i++)
+                {
+                    cod[i] = cod[i + 1];
+                    nome[i] = nome[i + 1];
+                    sobrenome[i] = sobrenome[i + 1];
+                    idade[i] = idade[i + 1];
+                    funcao[i] = funcao[i + 1];
+                    turno[i] = turno[i + 1];
+                    setor[i] = setor[i + 1];
+                    salarioByHrs[i] = salarioByHrs[i + 1];
+                    hrsBySemana[i] = hrsBySemana[i + 1];
+                    salario[i] = salario[i + 1];
+                    descontos[i] = descontos[i + 1];
+                }
+                Console.WriteLine("\nRemovido!");
+                cont--;
             }
-            Console.WriteLine("\nRemovido!");
-            cont--;
+            else
+            {
+                Console.WriteLine("\nNão foi possível excluir!");
+            }
+
         }
     }
 }
