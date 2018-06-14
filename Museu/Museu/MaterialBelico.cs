@@ -59,8 +59,10 @@ namespace Museu
                             Console.WriteLine("Opção Inválida");
                             break;
                     }
-                }catch(Exception e){
-                    Console.WriteLine("Erro.: "+e.ToString());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Erro.: " + e.ToString());
                 }
                 Console.ReadKey();
             } while (op != 0);
@@ -75,7 +77,26 @@ namespace Museu
             Console.WriteLine("4- Remover Material Bélico");
             Console.WriteLine("0- Sair");
             Console.Write("\nOpção: ");
-            return Convert.ToInt32(Console.ReadLine());//retorna opção
+
+            return solicitarOpcao();
+            //retorna opção
+        }       
+
+        //Operações
+        private int solicitarOpcao()
+        {
+            int op = 0;
+            try
+            {
+                op = Convert.ToInt32(Console.ReadLine());
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("\nOpção inválida!");
+                solicitarOpcao();
+            }
+            return op;
         }
 
         public void cadastrar()
@@ -94,76 +115,19 @@ namespace Museu
         {
             if (n >= 0)
             {
-                do
-                {
-                    Console.WriteLine("\n- Código: " + cod[n]);
 
-                    solicitarNome(n);
-                    solicitarDescricao(n);
-                    solicitarCategoria(n);
-                    solicitarQuantidade(n);
+                Console.WriteLine("\n- Código: " + cod[n]);
 
-                } while (nome[n] == "");
+                solicitarNome(n);
+                solicitarDescricao(n);
+                solicitarCategoria(n);
+                solicitarQuantidade(n);
 
                 Console.WriteLine("\nSalvo!");
             }
             else
             {
                 Console.WriteLine("\nNão foi possivel inserir!");
-            }
-        }
-
-        private void solicitarQuantidade(int n)
-        {
-            try
-            {
-                Console.WriteLine("Quantidade: ");
-                quantidade[n] = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Infome uma Quantidade válida");
-                solicitarQuantidade(n);
-            }
-        }
-
-        private void solicitarCategoria(int n)
-        {
-            try
-            {
-                Console.WriteLine("Categoria: ");
-                categoria[n] = Console.ReadLine();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Infome uma Categoria válida");
-                solicitarCategoria(n);
-            }
-        }
-
-        private void solicitarDescricao(int n)
-        {
-            try
-            {
-                Console.WriteLine("Descrição: ");
-                descricao[n] = Console.ReadLine();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Infome uma Descrição válida");
-                solicitarDescricao(n);
-            }
-        }
-
-        private void solicitarNome(int n)
-        {
-            try
-            {
-                Console.WriteLine("Nome: ");
-                nome[n] = Console.ReadLine();
-            }catch(Exception e){
-                Console.WriteLine("Infome um Nome Válido");
-                solicitarNome(n);
             }
         }
 
@@ -176,8 +140,38 @@ namespace Museu
             {
                 imprimirMaterialBelico(n);
             }
+        }        
+
+        public void alterar()
+        {
+            Console.WriteLine("\n--- Alterar dados do Material Bélico ---");
+            inserirDados(buscarMaterialBelico());//retorna índice do material belico. buscado
         }
 
+        public void remover()
+        {
+            //O índice removido da espaço ao seu sucessor, e assim sucessivamente. Ao final, decrementa contador de cadastros.
+            int buscado = buscarMaterialBelico();
+            if (buscado >= 0)
+            {
+                for (int i = buscado; i < cont; i++)
+                {
+                    cod[i] = cod[i + 1];
+                    nome[i] = nome[i + 1];
+                    descricao[i] = descricao[i + 1];
+                    categoria[i] = categoria[i + 1];
+                    quantidade[i] = quantidade[i + 1];
+                }
+                Console.WriteLine("\nRemovido!");
+                cont--;
+            }
+            else
+            {
+                Console.WriteLine("\nNão foi possível excluir!");
+            }
+        }
+
+        //Buscas e Impressões
         public void imprimirMaterialBelico(int i)
         {
             Console.WriteLine("- Código: " + cod[i]);
@@ -186,12 +180,6 @@ namespace Museu
             Console.WriteLine("Categoria: " + categoria[i]);
             Console.WriteLine("Quantidade: " + quantidade[i]);
             Console.WriteLine("\n--\n");
-        }
-
-        public void alterar()
-        {
-            Console.WriteLine("\n--- Alterar dados do Material Bélico ---");
-            inserirDados(buscarMaterialBelico());//retorna índice do material belico. buscado
         }
 
         public int buscarMaterialBelico()
@@ -204,15 +192,16 @@ namespace Museu
             Console.Write("\n2- Buscar por Categoria");
             Console.Write("\n0- Cancelar");
             Console.Write("\nOpção: ");
-            op = Int32.Parse(Console.ReadLine());
 
-            if (op != 1 && op != 2 && op != 3) Console.WriteLine("\nSaindo...");
-            else buscado = buscarBy(op);//busca por opção
+            op = solicitarOpcao();
+
+            if (op != 1 && op != 2 && op != 3)
+                Console.WriteLine("\nSaindo...");
+            else
+                buscado = buscarBy(op);//busca por opção
 
             return buscado;
         }
-
-        //Busca por opção e retorna indice do materiai belico buscado
         public int buscarBy(int op)
         {
             int indice = -1, codMB = 0;
@@ -255,6 +244,7 @@ namespace Museu
             return indice;
         }
 
+        //Cálculos
         public int totalDeMateriaisBelicos()
         {
             int total = 0;
@@ -268,27 +258,61 @@ namespace Museu
             return total;
         }
 
-        public void remover()
+        //Inserindo Dados
+        private void solicitarQuantidade(int n)
         {
-            //O índice removido da espaço ao seu sucessor, e assim sucessivamente. Ao final, decrementa contador de cadastros.
-            int buscado = buscarMaterialBelico();
-            if (buscado >= 0)
+            try
             {
-                for (int i = buscado; i < cont; i++)
-                {
-                    cod[i] = cod[i + 1];
-                    nome[i] = nome[i + 1];
-                    descricao[i] = descricao[i + 1];
-                    categoria[i] = categoria[i + 1];
-                    quantidade[i] = quantidade[i + 1];
-                }
-                Console.WriteLine("\nRemovido!");
-                cont--;
+                Console.WriteLine("Quantidade: ");
+                quantidade[n] = Convert.ToInt32(Console.ReadLine());
             }
-            else
+            catch (Exception)
             {
-                Console.WriteLine("\nNão foi possível excluir!");
+                Console.WriteLine("Infome uma Quantidade válida");
+                solicitarQuantidade(n);
             }
         }
+
+        private void solicitarCategoria(int n)
+        {
+            try
+            {
+                Console.WriteLine("Categoria: ");
+                categoria[n] = Console.ReadLine();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Infome uma Categoria válida");
+                solicitarCategoria(n);
+            }
+        }
+
+        private void solicitarDescricao(int n)
+        {
+            try
+            {
+                Console.WriteLine("Descrição: ");
+                descricao[n] = Console.ReadLine();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Infome uma Descrição válida");
+                solicitarDescricao(n);
+            }
+        }
+
+        private void solicitarNome(int n)
+        {
+            try
+            {
+                Console.WriteLine("Nome: ");
+                nome[n] = Console.ReadLine();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Infome um Nome Válido");
+                solicitarNome(n);
+            }
+        }        
     }
 }
