@@ -323,14 +323,11 @@ namespace Museu
 
         //Solicitando Dados
         private void solicitarSetor(int n)
-        {
-            try
-            {
-                Console.Write("\nSetor: ");
-                setor[n] = Console.ReadLine();
-            }
-            catch
-            {
+        {           
+            Console.Write("\nSetor: ");
+            setor[n] = Console.ReadLine();
+
+            if(setor[n].Length < 2 && setor[n] == " "){
                 Console.WriteLine("Dados inválidos!");
                 solicitarSetor(n);
             }
