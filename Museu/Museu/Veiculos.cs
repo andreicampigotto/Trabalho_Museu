@@ -17,8 +17,8 @@ namespace Museu
         private int[] quantidade;
 
         int cont;
-/*
-        public MaterialBelico()//Método construtor inicializando variáveis
+
+        public Veiculos()//Método construtor inicializando variáveis
         {
             cont = 0;
             cod = new int[100];
@@ -26,7 +26,7 @@ namespace Museu
             descricao = new String[100];
             categoria = new String[100];
             quantidade = new int[100];
-        }*/
+        }
 
         //método que inicializa o menu() de opçoes para o gerenciamento de materiais belicos
         public void iniciar()
@@ -62,6 +62,7 @@ namespace Museu
 
         public int menu()
         {
+<<<<<<< HEAD
             Console.WriteLine("\n---- Veículos ---");
             Console.WriteLine("1 - Novo veículo");
             Console.WriteLine("2 - Listar veículos ");
@@ -70,6 +71,23 @@ namespace Museu
             Console.WriteLine("0- Sair");
             Console.Write("\nOpção: ");
             return Int32.Parse(Console.ReadLine());//retorna opção
+=======
+            Console.Write(
+                  @" ---------------------------------------
+                     |  1  |     Cadastrar veículo         |
+                     |-------------------------------------|
+                     |  2  |      Listar veículos          |
+                     |-------------------------------------|
+                     |  3  |      Editar veículos          |
+                     |-------------------------------------|
+                     |  4  |      Remover veículos         |
+                     |-------------------------------------|
+                     |  0  |            Sair               |
+                     ---------------------------------------      
+                      OPÇÃO: ");
+
+            return Convert.ToInt32(Console.ReadLine());
+>>>>>>> 9f42bc8ea81d16227294fe2a7403f532be916406
         }
 
         public void cadastrar()
@@ -88,17 +106,22 @@ namespace Museu
         {
             do
             {
+<<<<<<< HEAD
                 Console.WriteLine("\nNúmero de cadastro: " + cod[n]);
                 Console.Write("\nNome: ");
+=======
+                Console.WriteLine("\n- Número de cadastro: " + cod[n]);
+                Console.Write("\nNome veículo: ");
+>>>>>>> 9f42bc8ea81d16227294fe2a7403f532be916406
                 nome[n] = Console.ReadLine();
 
-                Console.Write("\nDescrição: ");
+                Console.Write("\nDescrição do veículo: ");
                 descricao[n] = Console.ReadLine();
 
-                Console.Write("\nCategoria: ");
+                Console.Write("\nCategoria do veículo: ");
                 categoria[n] = Console.ReadLine();
 
-                Console.Write("\nQuantidade: ");
+                Console.Write("\nQuantidade de veículos: ");
                 quantidade[n] = Int32.Parse(Console.ReadLine());
 
                 if (nome[n] == "")//validação simples
@@ -112,38 +135,38 @@ namespace Museu
 
         public void listar()
         {
-            Console.WriteLine("\n--- Lista de Materias Bélicos ---");
-            Console.WriteLine("\nTotal de Materiais Bélicos: " + totalDeMateriaisBelicos());//Soma quantidade de materiais belicos
+            Console.WriteLine("\n--- Lista de veículos ---");
+            Console.WriteLine("\nTotal de veículos: " + totalDeVeiculos());//Soma quantidade de materiais belicos
             for (int n = 0; n < cont; n++)
             {
-                imprimirMaterialBelico(n);
+                imprimirVeiculos(n);
             }
         }
 
-        public void imprimirMaterialBelico(int i)
+        public void imprimirVeiculos(int i)
         {
-            Console.WriteLine("- Código: " + cod[i]);
-            Console.WriteLine("Nome: " + nome[i]);
-            Console.WriteLine("Descrição: " + descricao[i]);
-            Console.WriteLine("Categoria: " + categoria[i]);
-            Console.WriteLine("Quantidade: " + quantidade[i]);
+            Console.WriteLine("Número de cadastro: " + cod[i]);
+            Console.WriteLine("Nome veículo: " + nome[i]);
+            Console.WriteLine("Descrição veículo: " + descricao[i]);
+            Console.WriteLine("Categoria do veículo: " + categoria[i]);
+            Console.WriteLine("Quantidade de veículos: " + quantidade[i]);
             Console.WriteLine("\n--\n");
         }
 
         public void alterar()
         {
-            Console.WriteLine("\n--- Alterar dados do Material Bélico ---");
-            inserirDados(buscarMaterialBelico());//retorna índice do material belico. buscado
+            Console.WriteLine("\n--- Editar veículos ---");
+            inserirDados(buscarVeiculos());//retorna índice do material belico. buscado
         }
 
-        public int buscarMaterialBelico()
+        public int buscarVeiculos()
         {
             int op = 0, buscado = -1;
 
             do
             {
-                Console.Write("\n--- Buscar Material Belico ---\n");
-                Console.Write("\n1- Buscar por Códiogo");
+                Console.Write("\n--- Buscar Veículos ---\n");
+                Console.Write("\n1- Buscar por Número de cadastro");
                 Console.Write("\n2- Buscar por Nome");
                 Console.Write("\n2- Buscar por Categoria");
                 Console.Write("\n0- Cancelar");
@@ -167,29 +190,29 @@ namespace Museu
             {
                 if (op == 2)
                 {
-                    Console.Write("\nInforme o Nome do Material Bélico: ");
+                    Console.Write("\nInforme o nome do veículo: ");
                     nomeMB = Console.ReadLine();
                     for (int i = 0; i < cont; i++)
                     {
                         if (nomeMB.Equals(nome[i]))
                         {
-                            imprimirMaterialBelico(i);
+                            imprimirVeiculos(i);
                         }
                     }
                 }
                 else if (op == 3)
                 {
-                    Console.Write("\nInforme a Categoria do Material Bélico: ");
+                    Console.Write("\nInforme a categoria do veículo: ");
                     categoriaMB = Console.ReadLine();
                     for (int i = 0; i < cont; i++)
                     {
                         if (categoriaMB.Equals(categoria[i]))
                         {
-                            imprimirMaterialBelico(i);
+                            imprimirVeiculos(i);
                         }
                     }
                 }
-                Console.Write("\nInforme o código do Material Bélico: ");
+                Console.Write("\nInforme o número de cadastro do veículo: ");
                 codMB = Int32.Parse(Console.ReadLine());
                 for (int i = 0; i < cont; i++)
                 {
@@ -204,7 +227,7 @@ namespace Museu
             return indice;
         }
 
-        public int totalDeMateriaisBelicos()
+        public int totalDeVeiculos()
         {
             int total = 0;
             if (cont > 0)
@@ -220,7 +243,7 @@ namespace Museu
         public void remover()
         {
             //O índice removido da espaço ao seu sucessor, e assim sucessivamente. Ao final, decrementa contador de cadastros.
-            int buscado = buscarMaterialBelico();
+            int buscado = buscarVeiculos();
             for (int i = buscado; i < cont; i++)
             {
                 cod[i] = cod[i + 1];
