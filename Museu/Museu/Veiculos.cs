@@ -62,11 +62,11 @@ namespace Museu
 
         public int menu()
         {
-            Console.WriteLine("\n---- Materiais Béçicos ---");
-            Console.WriteLine("1- Novo Material Bélico");
-            Console.WriteLine("2- Listar Materiais Bélicos");
-            Console.WriteLine("3- Alterar Material Bélico");
-            Console.WriteLine("4- Remover Material Bélico");
+            Console.WriteLine("\n---- Veículos ---");
+            Console.WriteLine("1 - Novo veículo");
+            Console.WriteLine("2 - Listar veículos ");
+            Console.WriteLine("3 - Editar veículos");
+            Console.WriteLine("4 - Remover Veículos");
             Console.WriteLine("0- Sair");
             Console.Write("\nOpção: ");
             return Int32.Parse(Console.ReadLine());//retorna opção
@@ -74,7 +74,7 @@ namespace Museu
 
         public void cadastrar()
         {
-            Console.Write("\n--- Cadastro de Material Bélico ---");
+            Console.Write("\n--- Cadastro de veículos ---");
             //Tipo um IDENTITY
             if (cont == 0) cod[cont] = cont + 1;
             else cod[cont] = cod[cont - 1] + 1;
@@ -88,7 +88,7 @@ namespace Museu
         {
             do
             {
-                Console.WriteLine("\n- Código: " + cod[n]);
+                Console.WriteLine("\nNúmero de cadastro: " + cod[n]);
                 Console.Write("\nNome: ");
                 nome[n] = Console.ReadLine();
 

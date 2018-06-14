@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Museu
 {
-    private class Quadros
+    public class Quadros
     {
         string[] nomeDoQuadro = new string[150];
         string[] pintor = new string[150];
@@ -27,7 +27,7 @@ namespace Museu
             nomeDoQuadro[qtda] = "A Face da Guerra";
             pintor[qtda] = "Salvador Dalí";
             ano[qtda] = 1940;
-            valorDoQuadro[qtda] = 000;
+            valorDoQuadro[qtda] = 0000;
             cod[qtda]++;
             qtda++;
 
@@ -92,15 +92,16 @@ namespace Museu
                             |  4  |    REMOVER QUADROS     |
                             |------------------------------|
                             |  0  |         SAIR           |
-                              -----------------------------");//retorna opção
+                              ----------------------------- ");
+
+         return Convert.ToInt32(Console.ReadLine());//retorna opção
 
         }
         public void cadastrar()
         {
             Console.Write("\n ~ ~ ~ Cadastro de Quadros ~ ~ ~ ");
-            //
-            if (qtda == 0) cod[qtda] = qtda + 1;
-            else cod[qtda] = cod[qtda - 1] + 1;
+           
+            cod[qtda] = cod[qtda - 1] + 1;
 
             inserirDados(qtda);//insere dados conforme indice qtda
 

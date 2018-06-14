@@ -93,7 +93,9 @@ namespace Museu
                             |  4  |     REMOVER FARDA      |
                             |------------------------------|
                             |  0  |         SAIR           |
-                              -----------------------------");//retorna opçã
+                              -----------------------------");
+
+         return Convert.ToInt32(Console.ReadLine());//retorna opçã
         }
 
 
