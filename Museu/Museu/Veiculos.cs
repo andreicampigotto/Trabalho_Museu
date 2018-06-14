@@ -87,7 +87,7 @@ namespace Museu
                       OPÇÃO: ");
 
             return Convert.ToInt32(Console.ReadLine());
->>>>>>> 9f42bc8ea81d16227294fe2a7403f532be916406
+
         }
 
         public void cadastrar()
@@ -106,13 +106,10 @@ namespace Museu
         {
             do
             {
-<<<<<<< HEAD
                 Console.WriteLine("\nNúmero de cadastro: " + cod[n]);
                 Console.Write("\nNome: ");
-=======
                 Console.WriteLine("\n- Número de cadastro: " + cod[n]);
                 Console.Write("\nNome veículo: ");
->>>>>>> 9f42bc8ea81d16227294fe2a7403f532be916406
                 nome[n] = Console.ReadLine();
 
                 Console.Write("\nDescrição do veículo: ");
