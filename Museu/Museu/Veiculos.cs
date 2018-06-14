@@ -196,7 +196,7 @@ namespace Museu
             }
             catch(Exception e)
             {
-                Console.WriteLine("Infome um Nome Válido");
+                Console.WriteLine("Infome um nome Válido");
                 solicitarNome(n);
             }
         }
