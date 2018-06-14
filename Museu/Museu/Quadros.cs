@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Museu
 {
-    public class Quadros
+    private class Quadros
     {
         string[] nomeDoQuadro = new string[150];
         string[] pintor = new string[150];
@@ -94,6 +94,17 @@ namespace Museu
                             |  0  |         SAIR           |
                               -----------------------------");//retorna opção
 
+        }
+        public void cadastrar()
+        {
+            Console.Write("\n ~ ~ ~ Cadastro de Quadros ~ ~ ~ ");
+            //
+            if (qtda == 0) cod[qtda] = qtda + 1;
+            else cod[qtda] = cod[qtda - 1] + 1;
+
+            inserirDados(qtda);//insere dados conforme indice qtda
+
+            qtda++;
         }
 
     }

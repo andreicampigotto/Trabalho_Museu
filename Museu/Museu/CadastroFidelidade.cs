@@ -22,15 +22,15 @@ namespace Museu
         private int[] numeroDeVisitas;
         private int[] numeroTelefone;
         private char[] sexo;
-        
+       
 
         int contador;
         private int pontuacao;
 
         public CadastroFidelidade()
+        
         {
             contador = 0;
-           
             numeroCliente = new int[100];
             nomeCliente = new String[100];
             sobrenomeCliente = new String[100];

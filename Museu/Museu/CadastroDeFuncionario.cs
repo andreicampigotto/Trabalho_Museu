@@ -22,7 +22,7 @@ namespace Museu
 
         int cont;
 
-        public CadastroDeFuncionario()
+        public CadastroDeFuncionario() 
         {
             cont = 0;
             cod = new int[100];
