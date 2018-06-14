@@ -40,6 +40,7 @@ namespace Museu
             //cadastrar();
         }
 
+
         public void iniciar()
         {
             int op = 0;
@@ -155,6 +156,7 @@ namespace Museu
             }
             Console.WriteLine("Folha de Pagamento: R$" + imprimirFolhaDePagamento());
             Console.WriteLine("Maior Salario: R$" + maiorSalario());
+            Console.WriteLine("Media de Salarios: R$" + mediaDeSalarios(cont));
         }
 
         public void alterar()
@@ -194,18 +196,10 @@ namespace Museu
         //Buscas e Impressões
         public void imprimirFuncionario(int i)
         {
-            Console.WriteLine("- Código: " + cod[i]);
-            Console.WriteLine("Nome: " + nome[i] + " " + sobrenome[i]);
-            Console.WriteLine("Idade: " + idade[i]);
-            Console.WriteLine("Função: " + funcao[i]);
-            Console.WriteLine("Turno: " + turno[i]);
-            Console.WriteLine("Setor: " + setor[i]);
+            Console.WriteLine(string.Format("-Código:   {0}\nNome:   {1}\nIdade:   {2}\nFunção:   {3}\nTurno:   {4}\nSetor:   {5}", cod[i], nome[i], idade[i], funcao[i], turno[i], setor[i]));
             Console.WriteLine("--- Salário ---");
-            Console.WriteLine("Salário por hora: R$" + salarioByHrs[i]);
-            Console.WriteLine("Horas por semana: " + hrsBySemana[i]);
-            Console.WriteLine("Descontos: R$" + descontos[i]);
-            Console.WriteLine("Salário Liquido: R$" + salario[i]);
-            Console.WriteLine("\n--\n");
+            Console.WriteLine(string.Format("Salário por hora: R$   {0}\nHoras por semana:   {1}\nDescontos:   {2}\nSalário Líquido:   {3}", salarioByHrs[i], hrsBySemana[i], descontos[i], salario[i));
+            Console.WriteLine("\n.");
         }
 
         public int buscarFuncionario()
@@ -277,7 +271,7 @@ namespace Museu
             {
                 return salarioByHoras * (hrsBySemana * 5) - descontos;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 Console.WriteLine("\nDados de Salario inválidos");
             }
@@ -310,6 +304,20 @@ namespace Museu
             }
 
             return maiorSalario;
+        }
+
+        public double mediaDeSalarios(int n)
+        {
+            double somaSalarios = 0;
+            if (n > 0)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    somaSalarios += salario[i];
+                }
+                return somaSalarios / n;
+            }
+            return 0;
         }
 
 
