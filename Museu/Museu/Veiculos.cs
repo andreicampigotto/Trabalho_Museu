@@ -81,14 +81,13 @@ namespace Museu
                      |  0  |            Sair               |
                      ---------------------------------------      
                       OPÇÃO: ");
-<<<<<<< HEAD
 
-            return Convert.ToInt32(Console.ReadLine());
 
-=======
+           
+
  
             return Convert.ToInt32(Console.ReadLine());//retorna opção
->>>>>>> b167ff374ac5086bb8fb502a8041f13e301639ff
+
         }
 
         public void cadastrar()
@@ -107,10 +106,9 @@ namespace Museu
         {
             if (n >= 0)
             {
-<<<<<<< HEAD
-                Console.WriteLine("\nNúmero de cadastro: " + cod[n]);
-                Console.Write("\nNome: ");
-                Console.WriteLine("\n- Número de cadastro: " + cod[n]);
+
+                Console.WriteLine("\n- Código: " + cod[n]);
+                
                 Console.Write("\nNome veículo: ");
                 nome[n] = Console.ReadLine();
 
@@ -119,11 +117,14 @@ namespace Museu
 
                 Console.Write("\nCategoria do veículo: ");
                 categoria[n] = Console.ReadLine();
-=======
+
+                Console.Write("\nQuantidade de veículos: ");
+                quantidade[n] = Convert.ToInt32(Console.ReadLine());
+
                 do
                 {
-                    Console.WriteLine("\n- Número cadastro: " + cod[n]);
->>>>>>> b167ff374ac5086bb8fb502a8041f13e301639ff
+                    Console.WriteLine("\n- Código: " + cod[n]);
+
 
                     solicitarNome(n);
                     solicitarDescricao(n);
@@ -213,7 +214,7 @@ namespace Museu
 
         public void imprimirVeiculos(int i)
         {
-            Console.WriteLine("- Número de cadastro: " + cod[i]);
+            Console.WriteLine("Código: " + cod[i]);
             Console.WriteLine("Nome do veículo: " + nome[i]);
             Console.WriteLine("Descrição: " + descricao[i]);
             Console.WriteLine("Categoria: " + categoria[i]);
@@ -231,7 +232,7 @@ namespace Museu
         {
             int op = 0, buscado = -1;
 
-            Console.Write("\n--- Buscar Material Belico ---\n");
+            Console.Write("\n--- Buscar veículos ---\n");
             Console.Write("\n1- Buscar por Códiogo");
             Console.Write("\n2- Buscar por Nome");
             Console.Write("\n2- Buscar por Categoria");
