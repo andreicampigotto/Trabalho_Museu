@@ -73,7 +73,7 @@ namespace Museu
         {
             Console.WriteLine(
                             @"\nMATERIAIS BELICOS:
-                              ---------------------------------------
+                             -----------------------------------------
                             |  1  |      NOVO MATERIAL BELICO         |
                             |-----------------------------------------|
                             |  2  |      LISTAR MATERIAIS BELICOS     |
@@ -83,7 +83,7 @@ namespace Museu
                             |  4  |      REMOVER MATERIAIS BELICOS    |
                             |-----------------------------------------|
                             |  0  |               SAIR                |
-                             ---------------------------------------- ");
+                             ----------------------------------------- ");
             Console.Write("\nOpção: ");
 
             return solicitarOpcao();
@@ -106,7 +106,6 @@ namespace Museu
             }
             return op;
         }
-
         public void cadastrar()
         {
             Console.Write("\n--- Cadastro de Material Bélico ---");
@@ -118,7 +117,6 @@ namespace Museu
 
             cont++;
         }
-
         public void inserirDados(int n)
         {
             if (n >= 0 && n < 100)
@@ -139,7 +137,6 @@ namespace Museu
                 Console.WriteLine("\nNão foi possivel inserir!");
             }
         }
-
 
         public void listar()
         {

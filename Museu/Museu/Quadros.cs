@@ -14,7 +14,8 @@ namespace Museu
         int[] ano = new int[150];
         double[] valorDoQuadro = new double[150];
         int[] cod = new int[150];
-        int qtda = 0;
+        int qtda = 0, somaAnos=0;
+        double mediaAnos = 0;
 
         public Quadros()
         {
@@ -70,6 +71,9 @@ namespace Museu
                         case 4:
                             remover();
                             break;
+                        case 5:
+                            estatisticas();
+                            break;
                         default:
                             Console.WriteLine("Opção Inválida");
                             break;
@@ -82,12 +86,12 @@ namespace Museu
                 Console.ReadKey();
             } while (op != 0);
         }
-        
+
         public int menu()
         {
             Console.WriteLine(
                             @"\nQUADROS:
-                              -----------------------------
+                             ------------------------------
                             |  1  |      NOVO QUADRO       |
                             |------------------------------|
                             |  2  |     LISTAR QUADROS     |
@@ -96,17 +100,19 @@ namespace Museu
                             |------------------------------|
                             |  4  |    REMOVER QUADROS     |
                             |------------------------------|
+                            |  5  |     ESTATISTICAS       |
+                            |------------------------------|
                             |  0  |         SAIR           |
-                              ----------------------------- ");
+                             ------------------------------ " );
 
-         return Convert.ToInt32(Console.ReadLine());//retorna opção
+            return Convert.ToInt32(Console.ReadLine());//retorna opção
 
         }
-        
+
         public void cadastrar()
         {
             Console.Write("\n ~ ~ ~ Cadastro de Quadros ~ ~ ~ ");
-           //verificação códico
+            //verificação códico
             cod[qtda] = cod[qtda - 1] + 1;
 
             inserirDados(qtda);//insere dados conforme indice qtda
@@ -140,7 +146,7 @@ namespace Museu
                 Console.WriteLine("Nome: ");
                 nomeDoQuadro[qtda] = Console.ReadLine();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome um Nome Válido");
                 solicitarNome(qtda);
@@ -154,7 +160,7 @@ namespace Museu
                 Console.WriteLine("Pintor: ");
                 pintor[qtda] = Console.ReadLine();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome uma Descrição válida");
                 solicitarPintor(qtda);
@@ -167,7 +173,7 @@ namespace Museu
                 Console.WriteLine("Categoria: ");
                 ano[qtda] = Convert.ToInt32(Console.ReadLine());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome uma Categoria válida");
                 solicitarAno(qtda);
@@ -193,55 +199,114 @@ namespace Museu
                 Console.WriteLine("Quantidade: ");
                 descricao[qtda] = Console.ReadLine();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome uma Quantidade válida");
                 solicitarDescricao(qtda);
             }
         }
-        
+
+        public void imprimirQuadros(int i)
+        {
+            Console.WriteLine("\nCódigo: " + cod[i] +
+                              "\nNome do Quadro: " + nomeDoQuadro[i] +
+                              "\nNome do Pintor: " + pintor[i] +
+                              "\nAno: " + ano[i] +
+                              "\nValor: " + valorDoQuadro[i] +
+                              "\nDescrição: " + descricao[i] +
+                              "\n");
+        }
+
         public void listar()
         {
             Console.WriteLine("\n ~ ~ ~ Lista de Quadros ~ ~ ~ ");
-            //listar
-            Console.WriteLine(string.Format("Códico:   {0}, Nome do Quadro:   {1}, Pintor:    {2}, Ano:    {3}, Valor do Quadro:    {4}, Descrição:   {5}", cod, nomeDoQuadro, pintor, ano, valorDoQuadro, descricao)); 
-        }//listar produtos
+
+            for (int j = 0; j < qtda; j++)
+            {
+                imprimirQuadros(j);
+            }
+        } //testar listar
 
         public void alterar()
         {
-            Console.WriteLine("\n ~ ~ ~ Alterar dados dos Quadros ~ ~ ~ ");
-            int newCod = Utils.PressKleyRetournZero(Console.ReadLine());
-            
-            
-            if (newCod > nomeDoQuadro.Length || string.IsNullOrEmpty(nomeDoQuadro[newCod]))
-                return;
+            Console.Write("\n ~ ~ ~ Alterar dados dos Quadros ~ ~ ~ ");
 
-             
-            Console.Write("Nome do Quadro: ");
-            nomeDoQuadro[newCod] = Console.ReadLine();
+            Console.Write("Insira o Códico do produto a ser alterado: ");
+            int newCod = Convert.ToInt32(Console.ReadLine());
+            int indice = 0;
+            for (int i = 0; i < qtda; i++)
+            {
+                if (newCod == cod[i])
+                {
+                    imprimirQuadros(i);
+                    indice = i;
+                }
+            }
+            Console.WriteLine("Você realmente deseja alterar? " +
+                              "Sim / Não");
+            string op = Console.ReadLine().ToLower();
 
-            Console.Write("Pintor: ");
-            pintor[newCod] = Console.ReadLine();
+            if (op == "sim")
+            {
+                inserirDados(indice);
+            }
 
-            Console.Write("Ano do Quadro: ");
-            ano[newCod] = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Valor do Quadro: ");
-            valorDoQuadro[newCod] = Convert.ToDouble(Console.ReadLine());
-
-            Console.Write("Descrição: ");
-            descricao[newCod] = Console.ReadLine();
-
-            Console.WriteLine("Quadro alterado com sucesso!");
-
-            cod[qtda] = newCod;
-        } //Alteração de produtos
+        } // testar Alteração de produtos
 
         public void remover()
         {
+            if (qtda > 0)
+            {
+                int newCod = 0;
+                try
+                {
+                    Console.Write("Digite o códico do quadro a ser removido: ");
+                    newCod = Convert.ToInt32(Console.ReadLine());
+                    if (newCod < 1)
+                    {
+                        Console.WriteLine("Infome um códico válido");
+                        remover();
+                    }
+                }
 
+                catch (Exception)
+                {
+                    Console.WriteLine("Infome um códico válido");
+                    remover();
+                }
+
+                for (int i = newCod; i < qtda; i++)
+                {
+                    cod[i] = cod[i++];
+                    nomeDoQuadro[i] = nomeDoQuadro[i++];
+                    pintor[i] = pintor[i++];
+                    ano[i] = ano[i++];
+                    valorDoQuadro[i] = valorDoQuadro[i++];
+                    descricao[i] = descricao[i++];
+                }
+
+                Console.WriteLine("Quadro removido com sucesso!");
+                qtda--;
+            }
+            else
+            {
+                Console.WriteLine("\nNão foi possível excluir!");
+            }
+           
+        }
+
+        public void estatisticas()
+        {
+            for (int i = 0; i < qtda; i++)
+            {
+                somaAnos += ano[i];
+
+            }
+            mediaAnos = somaAnos / qtda;
+            Console.WriteLine("Média de anos dos quadros: " + mediaAnos);
         }
     }
-        
+
 }
 
