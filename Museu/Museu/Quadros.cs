@@ -14,7 +14,8 @@ namespace Museu
         int[] ano = new int[150];
         double[] valorDoQuadro = new double[150];
         int[] cod = new int[150];
-        int qtda = 0;
+        int qtda = 0, somaAnos=0;
+        double mediaAnos = 0;
 
         public Quadros()
         {
@@ -70,6 +71,9 @@ namespace Museu
                         case 4:
                             remover();
                             break;
+                        case 5:
+                            estatisticas();
+                            break;
                         default:
                             Console.WriteLine("Opção Inválida");
                             break;
@@ -87,7 +91,7 @@ namespace Museu
         {
             Console.WriteLine(
                             @"\nQUADROS:
-                              -----------------------------
+                             ------------------------------
                             |  1  |      NOVO QUADRO       |
                             |------------------------------|
                             |  2  |     LISTAR QUADROS     |
@@ -96,8 +100,10 @@ namespace Museu
                             |------------------------------|
                             |  4  |    REMOVER QUADROS     |
                             |------------------------------|
+                            |  5  |     ESTATISTICAS       |
+                            |------------------------------|
                             |  0  |         SAIR           |
-                              ----------------------------- ");
+                             ------------------------------ " );
 
             return Convert.ToInt32(Console.ReadLine());//retorna opção
 
@@ -290,6 +296,16 @@ namespace Museu
            
         }
 
+        public void estatisticas()
+        {
+            for (int i = 0; i < qtda; i++)
+            {
+                somaAnos += ano[i];
+
+            }
+            mediaAnos = somaAnos / qtda;
+            Console.WriteLine("Média de anos dos quadros: " + mediaAnos);
+        }
     }
 
 }
