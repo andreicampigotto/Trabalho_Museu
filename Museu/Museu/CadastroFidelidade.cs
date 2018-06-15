@@ -42,6 +42,7 @@ namespace Museu
         public void iniciar()
         {
             int op = 0;
+            Console.Clear();
             do
             {
                 try
