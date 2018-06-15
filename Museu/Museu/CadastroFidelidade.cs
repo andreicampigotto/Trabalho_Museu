@@ -16,7 +16,7 @@ namespace Museu
         private String[] nacionalidade; //funcao
         private String[] profissao; //turno
         private String[] sexo; //setor
-        private double[] quantidadeDeVisitas;  //salarioByHrs
+        private int[] quantidadeDeVisitas;  //salarioByHrs
         private double[] quantidadeGastosNoMuseu;   //hrsBySemana
         private double[] telefoneContato; // descontos
 
@@ -33,7 +33,7 @@ namespace Museu
             nacionalidade = new String[100];
             profissao = new String[100];
             sexo = new String[100];
-            quantidadeDeVisitas = new double[100];
+            quantidadeDeVisitas = new int[100];
             quantidadeGastosNoMuseu = new double[100];
             telefoneContato = new double[100];
 
@@ -179,8 +179,8 @@ namespace Museu
         {
             try
             {
-                Console.Write("\Quantidade de visitas:");
-                quantidadeDeVisitas[n] = Convert.ToDouble(Console.ReadLine());
+                Console.Write("\nQuantidade de visitas:");
+                quantidadeDeVisitas[n] = Convert.ToInt32(Console.ReadLine());
             }
             catch (Exception)
             {
@@ -275,13 +275,74 @@ namespace Museu
             {
                 imprimirCliente(n);
             }
-            Console.WriteLine("Média gastos por visita: R$" + imprimirMediaVisita());
+            Console.WriteLine("Média das visitas: " + imprimirMediaVisita());
+            Console.WriteLine("Total de visitas:" + imprimirTotalVisitas() +
+                "\nTotal de gastos clientes: " + imprimirGastosClientes() +
+                "\nMédia de gastos por cliente: " + imprimirMediaDeGastos());
             
+        }
+
+        private double imprimirMediaDeGastos()
+        {
+
+            double somaMediaGastos = 0;
+            for (int i = 0; i < cont; i++)
+            {
+                somaMediaGastos += quantidadeGastosNoMuseu[i];
+            }
+            double media  = somaMediaGastos / cont;
+            return media;
+        }
+
+        private double imprimirGastosClientes()
+        {
+            double somaGastos = 0;
+            for (int i = 0; i < cont; i++)
+            {
+                somaGastos += quantidadeGastosNoMuseu[i];
+            }
+            return somaGastos;
+        }
+
+        private int imprimirTotalVisitas()
+        {
+            int somaTotal = 0;
+            for (int i = 0; i < cont; i++)
+            {
+                somaTotal += quantidadeDeVisitas[i];
+            }
+            return somaTotal;
+        }
+
+        private int imprimirMediaVisita()
+        {
+            int somaVisitas = 0;
+            for (int i = 0; i < cont; i++)
+            { 
+                somaVisitas += quantidadeDeVisitas[i];
+            }
+            return somaVisitas / cont;
         }
         public void alterar()
         {
             Console.WriteLine("\n--- Editar dados do cliente ---");
             inserirDados(buscarCliente());
+        }
+
+        private int buscarCliente()
+        {
+            int codC = 0, indice = 0;
+            Console.Write("\nInforme o código do cliente: ");
+            codC = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < cont; i++)
+            {
+                if (codC.Equals(cod[i]))
+                {
+                    imprimirCliente(i);
+                    indice = i;
+                }
+            }
+            return indice;
         }
         public void remover()
         {
@@ -314,7 +375,7 @@ namespace Museu
         //Buscas e Impressões
         public void imprimirCliente(int i)
         {
-            Console.WriteLine(string.Format("-Código:   {0}\nNome:    {1} Sobrenome: {2}\nIdade:   {3}\nNacionalidade:  {4}\nProfissão: {5} Sexo: {6}\nQuantidade de visitas: {7}\nQuantidade Gastos no museu: {8}\nTelefone para contato:  {9}"  cod[i],  nome[i], sobrenome[i], idade[i], nacionalidade[i], profissao[i], sexo[i], quantidadeDeVisitas[i], quantidadeGastosNoMuseu[i], telefoneContato[i]));
+            Console.WriteLine(string.Format("-Código:   {0}\nNome:    {1} Sobrenome: {2}\nIdade:   {3}\nNacionalidade:  {4}\nProfissão: {5} Sexo: {6}\nQuantidade de visitas: {7}\nQuantidade Gastos no museu: {8}\nTelefone para contato:  {9}" ,  cod[i],  nome[i], sobrenome[i], idade[i], nacionalidade[i], profissao[i], sexo[i], quantidadeDeVisitas[i], quantidadeGastosNoMuseu[i], telefoneContato[i]));
             
         }
         public int buscarFuncionario()
