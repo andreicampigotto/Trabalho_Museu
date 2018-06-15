@@ -334,7 +334,8 @@ namespace Museu
             Console.Write("\nSetor: ");
             setor[n] = Console.ReadLine();
 
-            if(setor[n].Length < 2 && setor[n] == " "){
+            if (string.IsNullOrEmpty(setor[n]) || setor[n].Count() < 2)
+            {
                 Console.WriteLine("Dados inválidos!");
                 solicitarSetor(n);
             }
@@ -426,7 +427,7 @@ namespace Museu
             Console.Write("\nSobrenome: ");
             sobrenome[n] = Console.ReadLine();
 
-            if (sobrenome[n].Length < 2 || sobrenome[n] == "")
+            if (string.IsNullOrEmpty(sobrenome[n]) || sobrenome[n].Count() < 2)
             {
                 Console.WriteLine("\nDados inválidos!");
                 solicitarSobrenome(n);
@@ -438,7 +439,7 @@ namespace Museu
             Console.Write("\nNome: ");
             nome[n] = Console.ReadLine();
 
-            if (nome[n].Length < 2 || nome[n] == "")
+            if (string.IsNullOrEmpty(nome[n]) || nome[n].Count() < 2)
             {
                 Console.WriteLine("\nDados inválidos!");
                 solicitarNome(n);
