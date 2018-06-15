@@ -103,7 +103,8 @@ namespace Museu
                             |  5  |     ESTATISTICAS       |
                             |------------------------------|
                             |  0  |         SAIR           |
-                             ------------------------------ " );
+                             ------------------------------ 
+                            \nEscolha uma opção: " );
 
             return Convert.ToInt32(Console.ReadLine());//retorna opção
 
@@ -121,6 +122,7 @@ namespace Museu
         }//cadastro de novos quadros
         public void inserirDados(int qtda)
         {
+            Console.Clear();
             if (qtda >= 0)
             {
 
