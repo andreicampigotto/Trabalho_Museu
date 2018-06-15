@@ -73,7 +73,7 @@ namespace Museu
         {
             Console.WriteLine(
                             @"\nMATERIAIS BELICOS:
-                              ---------------------------------------
+                             -----------------------------------------
                             |  1  |      NOVO MATERIAL BELICO         |
                             |-----------------------------------------|
                             |  2  |      LISTAR MATERIAIS BELICOS     |
@@ -83,7 +83,7 @@ namespace Museu
                             |  4  |      REMOVER MATERIAIS BELICOS    |
                             |-----------------------------------------|
                             |  0  |               SAIR                |
-                             ---------------------------------------- ");
+                             ----------------------------------------- ");
             Console.Write("\nOpção: ");
 
             return solicitarOpcao();

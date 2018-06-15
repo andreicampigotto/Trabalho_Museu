@@ -207,17 +207,19 @@ namespace Museu
                               "\nNome do Pintor: " + pintor[i] + 
                               "\nAno: " + ano[i] +
                               "\nValor: " + valorDoQuadro[i] + 
-                              "\nDescrição: " + descricao[i]);
-
+                              "\nDescrição: " + descricao[i] + 
+                              "\n");
         }
 
-        
         public void listar()
         {
             Console.WriteLine("\n ~ ~ ~ Lista de Quadros ~ ~ ~ ");
-            //listar
-            Console.WriteLine(string.Format("Códico:   {0}, Nome do Quadro:   {1}, Pintor:    {2}, Ano:    {3}, Valor do Quadro:    {4}, Descrição:   {5}", cod, nomeDoQuadro, pintor, ano, valorDoQuadro, descricao)); 
-        }//listar produtos
+
+            for (int j = 0; j < qtda; j++)
+            {
+                imprimirQuadros(j);
+            }
+        } //testar listar
 
         public void alterar()
         {
@@ -243,10 +245,12 @@ namespace Museu
             }
             
 
-        } //Alteração de produtos
+        } // testar Alteração de produtos
 
         public void remover()
         {
+            Console.Write("Digite o Códico do quadro a ser removido: ");
+            int newCod = Convert.ToInt32(Console.ReadLine());
 
         }
 
