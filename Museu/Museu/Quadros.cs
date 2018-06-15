@@ -207,6 +207,12 @@ namespace Museu
         public void alterar()
         {
             Console.WriteLine("\n ~ ~ ~ Alterar dados dos Quadros ~ ~ ~ ");
+            int newCod = Utils.PressKleyRetournZero(Console.ReadLine());
+            newCod = cod[qtda];
+            
+            if (newCod > nomeDoQuadro.Length || string.IsNullOrEmpty(nomeDoQuadro[newCod]))
+                return;
+
              
         }
 

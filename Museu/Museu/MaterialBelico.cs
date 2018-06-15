@@ -15,6 +15,7 @@ namespace Museu
         private String[] categoria;
         private String[] descricao;
         private int[] quantidade;
+        private int[] ano;
 
         int cont;
 
@@ -71,7 +72,7 @@ namespace Museu
         public int menu()
         {
             Console.WriteLine(
-                            @"\nQUADROS:
+                            @"\nMATERIAIS BELICOS:
                               ---------------------------------------
                             |  1  |      NOVO MATERIAL BELICO         |
                             |-----------------------------------------|
@@ -87,7 +88,7 @@ namespace Museu
 
             return solicitarOpcao();
             //retorna opção
-        }       
+        }
 
         //Operações
         private int solicitarOpcao()
@@ -120,7 +121,7 @@ namespace Museu
 
         public void inserirDados(int n)
         {
-            if (n >= 0)
+            if (n >= 0 && n < 100)
             {
 
                 Console.WriteLine("\n- Código: " + cod[n]);
@@ -128,6 +129,7 @@ namespace Museu
                 solicitarNome(n);
                 solicitarDescricao(n);
                 solicitarCategoria(n);
+                solicitarAnoAquisicao(n);
                 solicitarQuantidade(n);
 
                 Console.WriteLine("\nSalvo!");
@@ -138,17 +140,19 @@ namespace Museu
             }
         }
 
+
         public void listar()
         {
             Console.WriteLine("\n--- Lista de Materias Bélicos ---");
 
-            Console.WriteLine("\nTotal de Materiais Bélicos: " + totalDeMateriaisBelicos());//Soma quantidade de materiais belicos
             for (int n = 0; n < cont; n++)
             {
                 imprimirMaterialBelico(n);
             }
-        }        
-        
+            Console.WriteLine("\nTotal de Materiais Bélicos: " + totalDeMateriaisBelicos());//Soma quantidade de materiais belicos            
+            Console.WriteLine("\nMédia de anos dos Materiais Bélicos: " + mediaAnoAquisicao(cont));
+        }
+
         public void alterar()
         {
             Console.WriteLine("\n--- Alterar dados do Material Bélico ---");
@@ -265,6 +269,20 @@ namespace Museu
             return total;
         }
 
+        public double mediaAnoAquisicao(int n)
+        {
+            double somaAnos = 0;
+            if (n > 0)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    somaAnos += ano[i];
+                }
+                return somaAnos / n;
+            }
+            return 0;
+        }
+
         //Inserindo Dados
         private void solicitarQuantidade(int n)
         {
@@ -280,14 +298,26 @@ namespace Museu
             }
         }
 
-        private void solicitarCategoria(int n)
+        private void solicitarAnoAquisicao(int n)
         {
             try
             {
-                Console.WriteLine("Categoria: ");
-                categoria[n] = Console.ReadLine();
+                Console.WriteLine("Ano de aquisição: ");
+                ano[n] = Convert.ToInt32(Console.ReadLine());
             }
             catch (Exception)
+            {
+                Console.WriteLine("Infome uma Quantidade válida");
+                solicitarAnoAquisicao(n);
+            }
+        }
+
+        private void solicitarCategoria(int n)
+        {
+            Console.WriteLine("Categoria: ");
+            categoria[n] = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(categoria[n]) || categoria[n].Count() < 2)
             {
                 Console.WriteLine("Infome uma Categoria válida");
                 solicitarCategoria(n);
@@ -296,12 +326,10 @@ namespace Museu
 
         private void solicitarDescricao(int n)
         {
-            try
-            {
-                Console.WriteLine("Descrição: ");
-                descricao[n] = Console.ReadLine();
-            }
-            catch (Exception)
+            Console.WriteLine("Descrição: ");
+            descricao[n] = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(descricao[n]) || descricao[n].Count() < 2)
             {
                 Console.WriteLine("Infome uma Descrição válida");
                 solicitarDescricao(n);
@@ -310,16 +338,21 @@ namespace Museu
 
         private void solicitarNome(int n)
         {
-            try
+
+            Console.WriteLine("Nome: ");
+            nome[n] = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(nome[n]) || nome[n].Count() < 2)
             {
-                Console.WriteLine("Nome: ");
-                nome[n] = Console.ReadLine();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Infome um Nome Válido");
+                Console.WriteLine("Infome um Nome!");
                 solicitarNome(n);
             }
-        }        
+        }
     }
 }
+
+/*
+string.isNullOrEmpty(texto)
+
+
+*/
