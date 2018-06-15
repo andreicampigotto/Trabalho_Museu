@@ -350,9 +350,3 @@ namespace Museu
         }
     }
 }
-
-/*
-string.isNullOrEmpty(texto)
-
-
-*/
