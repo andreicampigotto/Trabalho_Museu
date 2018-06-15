@@ -83,6 +83,7 @@ namespace Museu
                 Console.ReadKey();
             } while (op != 0);
         }
+
         public int Menu()
         {
             Console.WriteLine(
@@ -101,6 +102,7 @@ namespace Museu
 
          return Convert.ToInt32(Console.ReadLine());//retorna opçã
         }
+
         public void cadastrar()
         {
             Console.Write("\n ~ ~ ~ Cadastro de Fardas ~ ~ ~ ");
@@ -198,6 +200,95 @@ namespace Museu
             }
         }
 
+        public void imprimirFardas(int i)
+        {
+            Console.WriteLine("\nCódigo: " + cod[i] +
+                              "\nNome do Farda: " + nomeFarda[i] +
+                              "\nNome do Boina: " + nomeCabecaFarda[i] +
+                              "\nAno: " + ano[i] +
+                              "\nGraduação: " + graduacaoFarda[i] +
+                              "\nDescrição: " + descricao[i] +
+                              "\n");
+        }//testar
+
+        public void listar()
+        {
+            Console.WriteLine("\n ~ ~ ~ Lista de Fardas ~ ~ ~ ");
+
+            for (int j = 0; j < qtda; j++)
+            {
+                imprimirFardas(j);
+            }
+        } //testar listar
+
+        public void alterar()
+        {
+            Console.Write("\n ~ ~ ~ Alterar dados dos Quadros ~ ~ ~ ");
+
+            Console.Write("Insira o Códico do produto a ser alterado: ");
+            int newCod = Convert.ToInt32(Console.ReadLine());
+            int indice = 0;
+            for (int i = 0; i < qtda; i++)
+            {
+                if (newCod == cod[i])
+                {
+                    imprimirFardas(i);
+                    indice = i;
+                }
+            }
+            Console.WriteLine("Você realmente deseja alterar? " +
+                              "Sim / Não");
+            string op = Console.ReadLine().ToLower();
+
+            if (op == "sim")
+            {
+                inserirDados(indice);
+            }
+
+
+        } // testar Alteração de produtos
+
+        public void remover()
+        {
+            if (qtda > 0)
+            {
+                int newCod = 0;
+                try
+                {
+                    Console.Write("Digite o códico da farda a ser removida: ");
+                    newCod = Convert.ToInt32(Console.ReadLine());
+                    if (newCod < 1)
+                    {
+                        Console.WriteLine("Infome um códico válido");
+                        remover();
+                    }
+                }
+
+                catch (Exception)
+                {
+                    Console.WriteLine("Infome um códico válido");
+                    remover();
+                }
+
+                for (int i = newCod; i < qtda; i++)
+                {
+                    cod[i] = cod[i++];
+                    nomeFarda[i] = nomeFarda[i++];
+                    nomeCabecaFarda[i] = nomeCabecaFarda[i++];
+                    ano[i] = ano[i++];
+                    graduacaoFarda[i] = graduacaoFarda[i++];
+                    descricao[i] = descricao[i++];
+                }
+
+                Console.WriteLine("Farda removida com sucesso!");
+                qtda--;
+            }
+            else
+            {
+                Console.WriteLine("\nNão foi possível excluir!");
+            }
+
+        }
 
     }
 }
