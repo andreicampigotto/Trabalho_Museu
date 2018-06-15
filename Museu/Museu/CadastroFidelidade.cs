@@ -321,12 +321,12 @@ namespace Museu
         {
             int op = 0, buscado = -1;
 
-            Console.Write("\n--- Buscar cliente ---\n");
-            Console.Write("\n1- Buscar por Códiogo");
-            Console.Write("\n2- Buscar por nome");
-            Console.Write("\n3- Buscar por sobrenome");
-            Console.Write("\n0- Cancelar");
-            Console.Write("\nOpção: ");
+            Console.Write("\n--- Buscar cliente ---\n"+ 
+                          "\n1- Buscar por Códiogo" + 
+                          "\n2- Buscar por nome" + 
+                          "\n3- Buscar por sobrenome" + 
+                          "\n0- Cancelar" +
+                          "\nOpção: ");
             op = Convert.ToInt32(Console.ReadLine());
 
             if (op != 1 && op != 2 && op != 3) Console.WriteLine("\nSaindo...");
