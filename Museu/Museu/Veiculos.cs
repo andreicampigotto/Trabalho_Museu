@@ -152,7 +152,7 @@ namespace Museu
                 Console.WriteLine("Quantidade: ");
                 quantidade[n] = Convert.ToInt32(Console.ReadLine());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome uma Quantidade válida");
                 solicitarQuantidade(n);
@@ -166,7 +166,7 @@ namespace Museu
                 Console.WriteLine("Categoria: ");
                 categoria[n] = Console.ReadLine();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome uma Categoria válida");
                 solicitarCategoria(n);
@@ -180,7 +180,7 @@ namespace Museu
                 Console.WriteLine("Descrição: ");
                 descricao[n] = Console.ReadLine();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome uma Descrição válida");
                 solicitarDescricao(n);
@@ -194,7 +194,7 @@ namespace Museu
                 Console.WriteLine("Nome do veículo: ");
                 nome[n] = Console.ReadLine();
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 Console.WriteLine("Infome um nome Válido");
                 solicitarNome(n);
