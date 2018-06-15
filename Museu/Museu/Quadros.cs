@@ -82,7 +82,7 @@ namespace Museu
                 Console.ReadKey();
             } while (op != 0);
         }
-        
+
         public int menu()
         {
             Console.WriteLine(
@@ -99,14 +99,14 @@ namespace Museu
                             |  0  |         SAIR           |
                               ----------------------------- ");
 
-         return Convert.ToInt32(Console.ReadLine());//retorna opção
+            return Convert.ToInt32(Console.ReadLine());//retorna opção
 
         }
-        
+
         public void cadastrar()
         {
             Console.Write("\n ~ ~ ~ Cadastro de Quadros ~ ~ ~ ");
-           //verificação códico
+            //verificação códico
             cod[qtda] = cod[qtda - 1] + 1;
 
             inserirDados(qtda);//insere dados conforme indice qtda
@@ -202,12 +202,12 @@ namespace Museu
 
         public void imprimirQuadros(int i)
         {
-            Console.WriteLine("\nCódigo: " + cod[i]+
-                              "\nNome do Quadro: " + nomeDoQuadro[i] + 
-                              "\nNome do Pintor: " + pintor[i] + 
+            Console.WriteLine("\nCódigo: " + cod[i] +
+                              "\nNome do Quadro: " + nomeDoQuadro[i] +
+                              "\nNome do Pintor: " + pintor[i] +
                               "\nAno: " + ano[i] +
-                              "\nValor: " + valorDoQuadro[i] + 
-                              "\nDescrição: " + descricao[i] + 
+                              "\nValor: " + valorDoQuadro[i] +
+                              "\nDescrição: " + descricao[i] +
                               "\n");
         }
 
@@ -236,25 +236,61 @@ namespace Museu
                     indice = i;
                 }
             }
-            Console.WriteLine("Você realmente deseja alterar? " + 
+            Console.WriteLine("Você realmente deseja alterar? " +
                               "Sim / Não");
             string op = Console.ReadLine().ToLower();
 
-            if (op == "sim"){
+            if (op == "sim")
+            {
                 inserirDados(indice);
             }
-            
+
 
         } // testar Alteração de produtos
 
         public void remover()
         {
-            Console.Write("Digite o Códico do quadro a ser removido: ");
-            int newCod = Convert.ToInt32(Console.ReadLine());
+            if (qtda > 0)
+            {
+                int newCod = 0;
+                try
+                {
+                    Console.Write("Digite o códico do quadro a ser removido: ");
+                    newCod = Convert.ToInt32(Console.ReadLine());
+                    if (newCod < 1)
+                    {
+                        Console.WriteLine("Infome um códico válido");
+                        remover();
+                    }
+                }
 
+                catch (Exception)
+                {
+                    Console.WriteLine("Infome um códico válido");
+                    remover();
+                }
+
+                for (int i = newCod; i < qtda; i++)
+                {
+                    cod[i] = cod[i++];
+                    nomeDoQuadro[i] = nomeDoQuadro[i++];
+                    pintor[i] = pintor[i++];
+                    ano[i] = ano[i++];
+                    valorDoQuadro[i] = valorDoQuadro[i++];
+                    descricao[i] = descricao[i++];
+                }
+
+                Console.WriteLine("Quadro removido com sucesso!");
+                qtda--;
+            }
+            else
+            {
+                Console.WriteLine("\nNão foi possível excluir!");
+            }
+           
         }
 
     }
-        
+
 }
 
