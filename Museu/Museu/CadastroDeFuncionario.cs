@@ -221,8 +221,10 @@ namespace Museu
             Console.Write("\nOpção: ");
             op = Convert.ToInt32(Console.ReadLine());
 
-            if (op != 1 && op != 2 && op != 3) Console.WriteLine("\nSaindo...");
-            else buscado = buscarBy(op);
+            if (op != 1 && op != 2 && op != 3)
+                Console.WriteLine("\nSaindo...");
+            else 
+                buscado = buscarBy(op);
 
             return buscado;
         }
@@ -274,13 +276,16 @@ namespace Museu
         //Cálculos
         public double calcSalario(double salarioByHoras, double hrsBySemana, double descontos)
         {
-            try
+            if (cont > 0)
             {
-                return salarioByHoras * (hrsBySemana * 5) - descontos;
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("\nDados de Salario inválidos");
+                try
+                {
+                    return salarioByHoras * (hrsBySemana * 5) - descontos;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("\nDados de Salario inválidos");
+                }
             }
             return -1;
         }
@@ -301,12 +306,14 @@ namespace Museu
         public double maiorSalario()
         {
             double maiorSalario = salario[0];
-
-            for (int n = 0; n < cont; n++)
+            if (cont > 0)
             {
-                if (maiorSalario < salario[n])
+                for (int n = 0; n < cont; n++)
                 {
-                    maiorSalario = salario[n];
+                    if (maiorSalario < salario[n])
+                    {
+                        maiorSalario = salario[n];
+                    }
                 }
             }
 
