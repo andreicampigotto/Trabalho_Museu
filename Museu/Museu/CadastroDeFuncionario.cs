@@ -196,9 +196,9 @@ namespace Museu
         //Buscas e Impressões
         public void imprimirFuncionario(int i)
         {
-            Console.WriteLine(string.Format("-Código:   {0}\nNome:   {1}\nIdade:   {2}\nFunção:   {3}\nTurno:   {4}\nSetor:   {5}", cod[i], nome[i], idade[i], funcao[i], turno[i], setor[i]));
+            Console.WriteLine(string.Format("-Código:   {0}\nNome:    {1} Sobrenome: {2}\nIdade:   {3}\nFunção:  {4} Turno: {5} Setor: {6}", cod[i], nome[i], sobrenome[i], idade[i], funcao[i], turno[i], setor[i]));
             Console.WriteLine("--- Salário ---");
-            Console.WriteLine(string.Format("Salário por hora: R$   {0}\nHoras por semana:   {1}\nDescontos:   {2}\nSalário Líquido:   {3}", salarioByHrs[i], hrsBySemana[i], descontos[i], salario[i));
+            Console.WriteLine(string.Format("Salário por hora: R$   {0} Horas por semana:   {1} Descontos:   {2} Salário Líquido:   {3}", salarioByHrs[i], hrsBySemana[i], descontos[i], salario[i]));
             Console.WriteLine("\n.");
         }
 
@@ -380,8 +380,9 @@ namespace Museu
             Console.Write("\nTurno: ");
             turno[n] = Console.ReadLine();
 
-            if (turno[n].Length < 2 && turno[n] == " ")
+            if (turno[n].Length < 2 || turno[n] == " ")
             {
+                Console.WriteLine("\nDados inválidos!");
                 solicitarTurno(n);
             }
         }
@@ -392,8 +393,9 @@ namespace Museu
             Console.Write("\nFunção: ");
             funcao[n] = Console.ReadLine();
 
-            if (funcao[n].Length < 2 && funcao[n] == " ")
+            if (funcao[n].Length < 2 || funcao[n] == " ")
             {
+                Console.WriteLine("\nDados inválidos!");
                 solicitarFuncao(n);
             }
         }
@@ -417,8 +419,9 @@ namespace Museu
             Console.Write("\nSobrenome: ");
             sobrenome[n] = Console.ReadLine();
 
-            if (sobrenome[n].Length < 2 && sobrenome[n] == "")
+            if (sobrenome[n].Length < 2 || sobrenome[n] == "")
             {
+                Console.WriteLine("\nDados inválidos!");
                 solicitarSobrenome(n);
             }
         }
@@ -428,8 +431,9 @@ namespace Museu
             Console.Write("\nNome: ");
             nome[n] = Console.ReadLine();
 
-            if (nome[n].Length < 2 && nome[n] == "")
+            if (nome[n].Length < 2 || nome[n] == "")
             {
+                Console.WriteLine("\nDados inválidos!");
                 solicitarNome(n);
             }
         }
