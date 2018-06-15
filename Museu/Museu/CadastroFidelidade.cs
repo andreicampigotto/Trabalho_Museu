@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Museu
+namespace testeMuseu
 {
     class CadastroFidelidade
     {
-       private int[] cod;
+        private int[] cod;
         private double[] cpf; //salario
         private String[] nome;
         private String[] sobrenome;
@@ -22,7 +22,7 @@ namespace Museu
 
         int cont;
 
-        public CadastroFidelidade() 
+        public CadastroFidelidade()
         {
             cont = 0;
             cod = new int[100];
@@ -137,7 +137,7 @@ namespace Museu
                 solicitarQuantidadeDeVisitas(n);
                 solicitarQuantidadeGastosNoMuseu(n);
                 solicitarTelefoneContato(n);
-           
+
 
                 Console.WriteLine("\nSalvo!");
             }
@@ -263,10 +263,6 @@ namespace Museu
             }
         }
 
-        private void solicitarCpf(int n)
-        {
-            throw new NotImplementedException();
-        }
         public void listar()
         {
             Console.WriteLine("\n--- Lista de clientes ---");
@@ -279,7 +275,7 @@ namespace Museu
             Console.WriteLine("Total de visitas:" + imprimirTotalVisitas() +
                 "\nTotal de gastos clientes: " + imprimirGastosClientes() +
                 "\nMédia de gastos por cliente: " + imprimirMediaDeGastos());
-            
+
         }
 
         private double imprimirMediaDeGastos()
@@ -290,7 +286,7 @@ namespace Museu
             {
                 somaMediaGastos += quantidadeGastosNoMuseu[i];
             }
-            double media  = somaMediaGastos / cont;
+            double media = somaMediaGastos / cont;
             return media;
         }
 
@@ -318,7 +314,7 @@ namespace Museu
         {
             int somaVisitas = 0;
             for (int i = 0; i < cont; i++)
-            { 
+            {
                 somaVisitas += quantidadeDeVisitas[i];
             }
             return somaVisitas / cont;
@@ -375,17 +371,17 @@ namespace Museu
         //Buscas e Impressões
         public void imprimirCliente(int i)
         {
-            Console.WriteLine(string.Format("-Código:   {0}\nNome:    {1} Sobrenome: {2}\nIdade:   {3}\nNacionalidade:  {4}\nProfissão: {5} Sexo: {6}\nQuantidade de visitas: {7}\nQuantidade Gastos no museu: {8}\nTelefone para contato:  {9}" ,  cod[i],  nome[i], sobrenome[i], idade[i], nacionalidade[i], profissao[i], sexo[i], quantidadeDeVisitas[i], quantidadeGastosNoMuseu[i], telefoneContato[i]));
-            
+            Console.WriteLine(string.Format("-Código:   {0}\nNome:    {1} Sobrenome: {2}\nIdade:   {3}\nNacionalidade:  {4}\nProfissão: {5} Sexo: {6}\nQuantidade de visitas: {7}\nQuantidade Gastos no museu: {8}\nTelefone para contato:  {9}", cod[i], nome[i], sobrenome[i], idade[i], nacionalidade[i], profissao[i], sexo[i], quantidadeDeVisitas[i], quantidadeGastosNoMuseu[i], telefoneContato[i]));
+
         }
         public int buscarFuncionario()
         {
             int op = 0, buscado = -1;
 
-            Console.Write("\n--- Buscar cliente ---\n"+ 
-                          "\n1- Buscar por Códiogo" + 
-                          "\n2- Buscar por nome" + 
-                          "\n3- Buscar por sobrenome" + 
+            Console.Write("\n--- Buscar cliente ---\n" +
+                          "\n1- Buscar por Códiogo" +
+                          "\n2- Buscar por nome" +
+                          "\n3- Buscar por sobrenome" +
                           "\n0- Cancelar" +
                           "\nOpção: ");
             op = Convert.ToInt32(Console.ReadLine());
@@ -439,7 +435,21 @@ namespace Museu
             return indice;
         }
 
-       
+        private void solicitarCpf(int n)
+        {
+            try
+            {
+                Console.Write("\nInforme o cpf do cliente: ");
+                cpf[n] = Convert.ToInt32(Console.ReadLine());
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Dados Inválidos!");
+                solicitarCpf(n);
+            }
         }
     }
+}
+
 
