@@ -82,13 +82,20 @@ namespace Museu
 
         public int menu()
         {
-            Console.WriteLine("\n---- Funcionários ---");
-            Console.WriteLine("1- Novo funcionário");
-            Console.WriteLine("2- Listar funcionários");
-            Console.WriteLine("3- Alterar funcionário");
-            Console.WriteLine("4- Remover funcionário");
-            Console.WriteLine("0- Sair");
-            Console.Write("\nOpção: ");
+            Console.WriteLine(
+                @"\nFUNCIONÁRIOS:
+                              ---------------------------------------
+                            |  1  |      NOVO FUNCIONÁRIO             |
+                            |-----------------------------------------|
+                            |  2  |      LISTAR FUNCIONÁRIOS          |
+                            |-----------------------------------------|
+                            |  3  |      ALTERAR FUNCIONÁRIO          |
+                            |-----------------------------------------|
+                            |  4  |      REMOVER FUNCIONÁRIO          |
+                            |-----------------------------------------|
+                            |  0  |               SAIR                |
+                             ---------------------------------------- ");
+            Console.Write("\nOpção: ");            
 
             return solicitarOpcao();
         }
@@ -122,7 +129,7 @@ namespace Museu
 
         public void inserirDados(int n)
         {
-            if (n >= 0)
+            if (n >= 0 && n < 100)
             {
                 Console.WriteLine("\n- Código: " + cod[n]);
 
@@ -380,7 +387,7 @@ namespace Museu
             Console.Write("\nTurno: ");
             turno[n] = Console.ReadLine();
 
-            if (turno[n].Length < 2 || turno[n] == " ")
+            if (string.IsNullOrEmpty(turno[n]) || turno[n].Count() < 2)
             {
                 Console.WriteLine("\nDados inválidos!");
                 solicitarTurno(n);
@@ -393,7 +400,7 @@ namespace Museu
             Console.Write("\nFunção: ");
             funcao[n] = Console.ReadLine();
 
-            if (funcao[n].Length < 2 || funcao[n] == " ")
+            if (string.IsNullOrEmpty(funcao[n]) || funcao[n].Count() < 2)
             {
                 Console.WriteLine("\nDados inválidos!");
                 solicitarFuncao(n);
