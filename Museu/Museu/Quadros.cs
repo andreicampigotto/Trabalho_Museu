@@ -140,7 +140,7 @@ namespace Museu
                 Console.WriteLine("Nome: ");
                 nomeDoQuadro[qtda] = Console.ReadLine();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome um Nome Válido");
                 solicitarNome(qtda);
@@ -154,7 +154,7 @@ namespace Museu
                 Console.WriteLine("Pintor: ");
                 pintor[qtda] = Console.ReadLine();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome uma Descrição válida");
                 solicitarPintor(qtda);
@@ -167,7 +167,7 @@ namespace Museu
                 Console.WriteLine("Categoria: ");
                 ano[qtda] = Convert.ToInt32(Console.ReadLine());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome uma Categoria válida");
                 solicitarAno(qtda);
@@ -193,12 +193,24 @@ namespace Museu
                 Console.WriteLine("Quantidade: ");
                 descricao[qtda] = Console.ReadLine();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome uma Quantidade válida");
                 solicitarDescricao(qtda);
             }
         }
+
+        public void imprimirQuadros(int i)
+        {
+            Console.WriteLine("\nCódigo: " + cod[i]+
+                              "\nNome do Quadro: " + nomeDoQuadro[i] + 
+                              "\nNome do Pintor: " + pintor[i] + 
+                              "\nAno: " + ano[i] +
+                              "\nValor: " + valorDoQuadro[i] + 
+                              "\nDescrição: " + descricao[i]);
+
+        }
+
         
         public void listar()
         {
@@ -209,38 +221,35 @@ namespace Museu
 
         public void alterar()
         {
-            Console.WriteLine("\n ~ ~ ~ Alterar dados dos Quadros ~ ~ ~ ");
-            int newCod = Utils.PressKleyRetournZero(Console.ReadLine());
+            Console.Write("\n ~ ~ ~ Alterar dados dos Quadros ~ ~ ~ ");
+
+            Console.Write("Insira o Códico do produto a ser alterado: ");
+            int newCod = Convert.ToInt32(Console.ReadLine());
+            int indice = 0;
+            for (int i = 0; i < qtda; i++)
+            {
+                if (newCod == cod[i])
+                {
+                    imprimirQuadros(i);
+                    indice = i;
+                }
+            }
+            Console.WriteLine("Você realmente deseja alterar? " + 
+                              "Sim / Não");
+            string op = Console.ReadLine().ToLower();
+
+            if (op == "sim"){
+                inserirDados(indice);
+            }
             
-            
-            if (newCod > nomeDoQuadro.Length || string.IsNullOrEmpty(nomeDoQuadro[newCod]))
-                return;
 
-             
-            Console.Write("Nome do Quadro: ");
-            nomeDoQuadro[newCod] = Console.ReadLine();
-
-            Console.Write("Pintor: ");
-            pintor[newCod] = Console.ReadLine();
-
-            Console.Write("Ano do Quadro: ");
-            ano[newCod] = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Valor do Quadro: ");
-            valorDoQuadro[newCod] = Convert.ToDouble(Console.ReadLine());
-
-            Console.Write("Descrição: ");
-            descricao[newCod] = Console.ReadLine();
-
-            Console.WriteLine("Quadro alterado com sucesso!");
-
-            cod[qtda] = newCod;
         } //Alteração de produtos
 
         public void remover()
         {
 
         }
+
     }
         
 }
