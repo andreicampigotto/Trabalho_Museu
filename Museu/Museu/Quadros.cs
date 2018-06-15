@@ -82,6 +82,7 @@ namespace Museu
                 Console.ReadKey();
             } while (op != 0);
         }
+        
         public int menu()
         {
             Console.WriteLine(
@@ -101,6 +102,7 @@ namespace Museu
          return Convert.ToInt32(Console.ReadLine());//retorna opção
 
         }
+        
         public void cadastrar()
         {
             Console.Write("\n ~ ~ ~ Cadastro de Quadros ~ ~ ~ ");
@@ -110,7 +112,7 @@ namespace Museu
             inserirDados(qtda);//insere dados conforme indice qtda
 
             qtda++;//validado aqui
-        }
+        }//cadastro de novos quadros
         public void inserirDados(int qtda)
         {
             if (qtda >= 0)
@@ -197,24 +199,49 @@ namespace Museu
                 solicitarDescricao(qtda);
             }
         }
+        
         public void listar()
         {
             Console.WriteLine("\n ~ ~ ~ Lista de Quadros ~ ~ ~ ");
             //listar
             Console.WriteLine(string.Format("Códico:   {0}, Nome do Quadro:   {1}, Pintor:    {2}, Ano:    {3}, Valor do Quadro:    {4}, Descrição:   {5}", cod, nomeDoQuadro, pintor, ano, valorDoQuadro, descricao)); 
-        }
+        }//listar produtos
 
         public void alterar()
         {
             Console.WriteLine("\n ~ ~ ~ Alterar dados dos Quadros ~ ~ ~ ");
             int newCod = Utils.PressKleyRetournZero(Console.ReadLine());
-            newCod = cod[qtda];
+            
             
             if (newCod > nomeDoQuadro.Length || string.IsNullOrEmpty(nomeDoQuadro[newCod]))
                 return;
 
              
-        }
+            Console.Write("Nome do Quadro: ");
+            nomeDoQuadro[newCod] = Console.ReadLine();
 
+            Console.Write("Pintor: ");
+            pintor[newCod] = Console.ReadLine();
+
+            Console.Write("Ano do Quadro: ");
+            ano[newCod] = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Valor do Quadro: ");
+            valorDoQuadro[newCod] = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Descrição: ");
+            descricao[newCod] = Console.ReadLine();
+
+            Console.WriteLine("Quadro alterado com sucesso!");
+
+            cod[qtda] = newCod;
+        } //Alteração de produtos
+
+        public void remover()
+        {
+
+        }
     }
+        
 }
+
