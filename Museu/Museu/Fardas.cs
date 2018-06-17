@@ -160,12 +160,12 @@ namespace Museu
         {
             try
             {
-                Console.WriteLine("Pintor: ");
+                Console.WriteLine("Nome da boina: ");
                 nomeCabecaFarda[qtda] = Console.ReadLine();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Infome uma Descrição válida");
+                Console.WriteLine("Infome um nome válido");
                 solicitarBoina(qtda);
             }
         }
@@ -173,12 +173,12 @@ namespace Museu
         {
             try
             {
-                Console.WriteLine("Categoria: ");
+                Console.WriteLine("Graduação da farda: ");
                 graduacaoFarda[qtda] = Console.ReadLine();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Infome uma Categoria válida");
+                Console.WriteLine("Infome uma graduação válida");
                 solicitarGraduacaoFarda(qtda);
             }
         }
@@ -186,12 +186,12 @@ namespace Museu
         {
             try
             {
-                Console.WriteLine("Quantidade: ");
+                Console.WriteLine("ano: ");
                 ano[qtda] = Convert.ToInt32(Console.ReadLine());
             }
             catch (Exception e)
             {
-                Console.WriteLine("Infome uma Quantidade válida");
+                Console.WriteLine("Infome um ano válida");
                 solicitarAno(qtda);
             }
         }
@@ -199,12 +199,12 @@ namespace Museu
         {
             try
             {
-                Console.WriteLine("Quantidade: ");
+                Console.WriteLine("Descrição: ");
                 descricao[qtda] = Console.ReadLine();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Infome uma Quantidade válida");
+                Console.WriteLine("Infome uma descrição válida");
                 solicitarDescricao(qtda);
             }
         }

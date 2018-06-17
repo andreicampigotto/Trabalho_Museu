@@ -59,19 +59,19 @@ namespace Museu
                         cadastrofuncionarios.iniciar();
                         break;
                     case 2:
-                        //cadastroFidelidade.iniciar();
+                        cadastroFidelidade.iniciar();
                         break;
                     case 3:
-                        //roupas.iniciar();
+                        roupas.iniciar();
                         break;
                     case 4:
-                        //armas.iniciar();
+                        armas.iniciar();
                         break;
                     case 5:
-                        //veiculos.iniciar();
+                        veiculos.iniciar();
                         break;
                     case 6:
-                        //quadros.iniciar();
+                        quadros.iniciar();
                         break;
                     default:
                         Console.WriteLine("Opção Inválida");
