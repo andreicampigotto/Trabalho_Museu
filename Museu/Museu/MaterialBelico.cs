@@ -73,7 +73,7 @@ namespace Museu
         public int menu()
         {
             Console.WriteLine(
-                            @"\nMATERIAIS BELICOS:
+                            @"MATERIAIS BELICOS:
                              -----------------------------------------
                             |  1  |      NOVO MATERIAL BELICO         |
                             |-----------------------------------------|
