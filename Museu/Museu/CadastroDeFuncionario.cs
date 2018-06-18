@@ -206,7 +206,8 @@ namespace Museu
         {
             Console.WriteLine(string.Format("-Código:   {0}\nNome:    {1} Sobrenome: {2}\nIdade:   {3}\nFunção:  {4} Turno: {5} Setor: {6}", cod[i], nome[i], sobrenome[i], idade[i], funcao[i], turno[i], setor[i]));
             Console.WriteLine("--- Salário ---");
-            Console.WriteLine(string.Format("Salário por hora: R$   {0} Horas por semana:   {1} Descontos:   {2} Salário Líquido:   {3}", salarioByHrs[i], hrsBySemana[i], descontos[i], salario[i]));
+            //Console.WriteLine(string.Format("Salário por hora: R$   {0} Horas por semana:   {1} Descontos:   {2} Salário Líquido:   {3}", salarioByHrs[i], hrsBySemana[i], descontos[i], salario[i]));
+            Console.WriteLine(string.Format("Salário por hora: R$   {0}\nHoras por semana:   {1}\nDescontos:   {2}\nSalário Líquido:   {3}", salarioByHrs[i], hrsBySemana[i], descontos[i], salario[i]));
             Console.WriteLine("\n.");
         }
 

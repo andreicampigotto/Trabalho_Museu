@@ -27,6 +27,7 @@ namespace Museu
             descricao = new String[100];
             categoria = new String[100];
             quantidade = new int[100];
+            ano = new int[100];
         }
 
         //método que inicializa o menu() de opçoes para o gerenciamento de materiais belicos
@@ -186,6 +187,7 @@ namespace Museu
             Console.WriteLine("Nome: " + nome[i]);
             Console.WriteLine("Descrição: " + descricao[i]);
             Console.WriteLine("Categoria: " + categoria[i]);
+            Console.WriteLine("Ano de aquisição: " + ano[i]);
             Console.WriteLine("Quantidade: " + quantidade[i]);
             Console.WriteLine("\n--\n");
         }
