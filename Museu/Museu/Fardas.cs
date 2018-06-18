@@ -92,7 +92,7 @@ namespace Museu
         public int Menu()
         {
             Console.WriteLine(
-                            @"\nQUADROS:
+                            @"QUADROS:
                               -----------------------------
                             |  1  |       NOVA FARDA       |
                             |------------------------------|
