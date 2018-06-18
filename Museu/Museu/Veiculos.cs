@@ -133,10 +133,12 @@ namespace Museu
                     solicitarCategoria(n);
                     solicitarQuantidade(n);
 
+                    Console.Clear();
                 }
                 while (nome[n] == "");
                 {
                     Console.WriteLine("\nSalvo!");
+
                 }
             
 
@@ -145,7 +147,7 @@ namespace Museu
             {
                 Console.WriteLine("\nNão foi possivel inserir!");
             }
-            Console.Clear();
+            
         }
 
         private void solicitarQuantidade(int n)
