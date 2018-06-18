@@ -69,24 +69,24 @@ namespace Museu
 
         public int menu()
         {
-            Console.Write(
-                   @" -------------------------------------
-                     |  1  |  Novo cadastro de veículos    |
+            Console.Write(@" -------------------------------------
+                     |  1  |  NOVO CADASTRO DE VEICULOS    |
                      |-------------------------------------|
-                     |  2  |      Listar veículos          |
+                     |  2  |      LISTAR VEICULOS          |
                      |-------------------------------------|
-                     |  3  |      Editar veículos          |
+                     |  3  |      EDITAR VEICULOS          |
                      |-------------------------------------|
-                     |  4  |      Remover veículos         |
+                     |  4  |      REMOVER VEICULOS         |
                      |-------------------------------------|
-                     |  0  |            Sair               |
+                     |  0  |            SAIR               |
                       -------------------------------------     
                       \nOPÇÃO: ");
 
 
-           
 
- 
+
+
+
             return Convert.ToInt32(Console.ReadLine());//retorna opção
 
         }
@@ -144,6 +144,7 @@ namespace Museu
             {
                 Console.WriteLine("\nNão foi possivel inserir!");
             }
+            Console.Clear();
         }
 
         private void solicitarQuantidade(int n)
