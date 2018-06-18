@@ -48,6 +48,7 @@ namespace Museu
             int op = 0;
             do
             {
+                Console.Clear();
                 op = Menu();
 
                 switch (op)
