@@ -188,7 +188,7 @@ namespace Museu
                 Console.WriteLine("Valor: ");
                 valorDoQuadro[qtda] = Convert.ToInt32(Console.ReadLine());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Infome um valor válido");
                 solicitarValor(qtda);

@@ -17,3 +17,5 @@ C:\Users\105411\Documents\GitHub\Trabalho_Museu\Museu\Museu\obj\Debug\Museu.exe
 C:\Users\105411\Documents\GitHub\Trabalho_Museu\Museu\Museu\obj\Debug\Museu.pdb
 C:\Users\105349\Documents\GitHub\Trabalho_Museu\Museu\Museu\obj\Debug\Museu.exe
 C:\Users\105349\Documents\GitHub\Trabalho_Museu\Museu\Museu\obj\Debug\Museu.pdb
+C:\Users\105411\Documents\GitHub\Trabalho_Museu\Museu\Museu\bin\Debug\Museu.exe
+C:\Users\105411\Documents\GitHub\Trabalho_Museu\Museu\Museu\bin\Debug\Museu.pdb

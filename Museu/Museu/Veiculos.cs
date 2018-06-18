@@ -69,7 +69,8 @@ namespace Museu
 
         public int menu()
         {
-            Console.Write(@" -------------------------------------
+            Console.Write(
+                   @" -------------------------------------
                      |  1  |  NOVO CADASTRO DE VEICULOS    |
                      |-------------------------------------|
                      |  2  |      LISTAR VEICULOS          |
